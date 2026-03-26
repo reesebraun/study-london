@@ -1,0 +1,482 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #fafbfc;
+  color: #003D82;
+  line-height: 1.6;
+}
+
+/* UK Color Palette */
+:root {
+  --uk-red: #C8102E;
+  --uk-blue: #003D82;
+  --uk-white: #ffffff;
+  --uk-navy: #1e1e3f;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  background: linear-gradient(to right, var(--uk-navy), var(--uk-blue));
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid var(--uk-red);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--uk-white);
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--uk-white);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover {
+  color: var(--uk-red);
+  border-bottom-color: var(--uk-red);
+}
+
+/* Mobile Menu Toggle Button */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--uk-white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.menu-toggle:focus {
+  outline: none;
+}
+
+/* HERO */
+.hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #C8102E 0%, #003D82 25%, #ffffff 50%, #003D82 75%, #C8102E 100%);
+  background-size: 400% 400%;
+  animation: ukGradient 15s ease infinite;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(45deg, rgba(200, 16, 46, 0.1) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(200, 16, 46, 0.1) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(200, 16, 46, 0.1) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(200, 16, 46, 0.1) 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+  opacity: 0.05;
+  top: 0;
+  left: 0;
+}
+
+@keyframes ukGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-text {
+  max-width: 700px;
+  animation: fadeInUp 0.8s ease 0.2s backwards;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  font-weight: 300;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.hero button {
+  padding: 14px 40px;
+  border: none;
+  background-color: var(--uk-red);
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hero button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  background-color: #a00725;
+}
+
+/* FEATURES */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 5rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  border-left: 5px solid var(--uk-blue);
+}
+
+.feature-card:nth-child(1) {
+  border-left-color: var(--uk-blue);
+}
+
+.feature-card:nth-child(2) {
+  border-left-color: var(--uk-red);
+}
+
+.feature-card:nth-child(3) {
+  border-left-color: var(--uk-blue);
+}
+
+.feature-card:nth-child(4) {
+  border-left-color: var(--uk-red);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 61, 130, 0.15);
+  border-color: var(--uk-red);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--uk-navy);
+  font-weight: 700;
+}
+
+.feature-card p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ABOUT */
+.about {
+  padding: 5rem 3rem;
+  text-align: center;
+  background: linear-gradient(to right, rgba(200, 16, 46, 0.08), rgba(0, 61, 130, 0.08));
+  max-width: 900px;
+  margin: 0 auto;
+  border-top: 3px solid var(--uk-red);
+  border-bottom: 3px solid var(--uk-blue);
+}
+
+.about h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--uk-navy);
+  font-weight: 700;
+}
+
+.about p {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: linear-gradient(to right, var(--uk-navy), var(--uk-blue));
+  color: white;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border-top: 3px solid var(--uk-red);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+  }
+
+  .hero h2 {
+    font-size: 2.8rem;
+  }
+
+  .hero p {
+    font-size: 1.15rem;
+  }
+
+  .features {
+    padding: 4rem 2rem;
+    gap: 1.8rem;
+  }
+
+  .about {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Navbar Mobile */
+  .navbar {
+    flex-wrap: wrap;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 0.7rem 0;
+    border-bottom: none;
+    font-size: 0.95rem;
+  }
+
+  .nav-links a:hover {
+    color: var(--uk-red);
+    padding-left: 0.5rem;
+  }
+
+  /* Hero Mobile */
+  .hero {
+    min-height: 65vh;
+    padding: 1.5rem;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero button {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+
+  /* Features Mobile */
+  .features {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 2.5rem 1.2rem;
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 2rem;
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+  }
+
+  /* About Mobile */
+  .about {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .about h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .about p {
+    font-size: 0.95rem;
+  }
+
+  /* Footer Mobile */
+  footer {
+    padding: 1.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra Small Screens */
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .menu-toggle {
+    font-size: 1.3rem;
+  }
+
+  .hero {
+    min-height: 55vh;
+    padding: 1rem;
+  }
+
+  .hero h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero button {
+    padding: 11px 24px;
+    font-size: 0.9rem;
+  }
+
+  .features {
+    padding: 1.8rem 1rem;
+    gap: 1.2rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .feature-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+  }
+
+  .about {
+    padding: 1.8rem 1rem;
+  }
+
+  .about h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .about p {
+    font-size: 0.9rem;
+  }
+
+  footer {
+    padding: 1.2rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
