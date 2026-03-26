@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study London | Map</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+</head>
+<body>
+
+  <nav class="navbar">
+    <h1 class="logo">Study London</h1>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="budget.html">Budget</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="guide.html">Guide</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <h2>Explore London</h2>
+    <p>
+      Discover student-friendly food spots, neighborhoods, and must-see places across the city.
+    </p>
+  </header>
+
+  <section class="map-controls">
+    <button class="filter-btn active" data-category="all">All</button>
+    <button class="filter-btn" data-category="food">Food & Coffee</button>
+    <button class="filter-btn" data-category="neighborhood">Neighborhoods</button>
+    <button class="filter-btn" data-category="activity">Activities</button>
+  </section>
+
+  <section class="map-section">
+    <div id="map"></div>
+  </section>
+
+  <section class="map-notes">
+    <h3>Quick Tip</h3>
+    <p>
+      Use this map to get familiar with different parts of London before you arrive. Start by
+      exploring neighborhoods near your school, then save places you want to visit later.
+    </p>
+  </section>
+
+  <footer>
+    <p>Group 12 | DCDA Capstone Project</p>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <script src="map.js"></script>
+</body>
+</html>
