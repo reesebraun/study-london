@@ -342,7 +342,57 @@
     // Create markers when map is loaded
     map.on('load', function() {
       createMarkers();
+      
+      // Check for filter parameters from budget page
+      const params = new URLSearchParams(window.location.search);
+      const filterParam = params.get('filter');
+      
+      if (filterParam) {
+        applyPresetFilter(filterParam);
+      }
     });
+
+    // Preset filters from budget tips
+    function applyPresetFilter(filterType) {
+      // Clear all checkboxes first
+      document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+      });
+
+      // Apply specific filters based on budget tip clicked
+      switch(filterType) {
+        case 'groceries':
+          document.querySelector('input[name="category"][value="Shopping"]').checked = true;
+          document.querySelector('input[name="price"][value="1"]').checked = true;
+          break;
+        case 'transport':
+          document.querySelector('input[name="category"][value="Food"]').checked = true;
+          document.querySelector('input[name="price"][value="1"]').checked = true;
+          document.querySelector('input[name="price"][value="2"]').checked = true;
+          break;
+        case 'cheap-coffee':
+          document.querySelector('input[name="category"][value="Food"]').checked = true;
+          document.querySelector('input[name="price"][value="1"]').checked = true;
+          break;
+        case 'free-food':
+          document.querySelector('input[name="category"][value="Food"]').checked = true;
+          document.querySelector('input[name="price"][value="1"]').checked = true;
+          document.querySelector('input[name="price"][value="2"]').checked = true;
+          break;
+        case 'cheap-dining':
+          document.querySelector('input[name="category"][value="Food"]').checked = true;
+          document.querySelector('input[name="price"][value="1"]').checked = true;
+          document.querySelector('input[name="price"][value="2"]').checked = true;
+          break;
+        case 'free-attractions':
+          document.querySelector('input[name="category"][value="Monument"]').checked = true;
+          document.querySelector('input[name="price"][value="0"]').checked = true;
+          break;
+      }
+      
+      // Apply the filters
+      applyFilters();
+    }
 
     // Filter panel toggle
     const filterToggle = document.getElementById('filterToggle');
