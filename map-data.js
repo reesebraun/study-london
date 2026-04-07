@@ -1,0 +1,113 @@
+// London locations data from CSV
+const londonLocations = [
+  { name: "Dishoom Covent Garden", type: "Food", cuisine: "Indian", priceLevel: "$$", price: 2, area: "Westminster", tube: "Covent Garden", lat: 51.5135, lng: -0.1228, studentFavorite: true, description: "Indian brunch" },
+  { name: "Dishoom Shoreditch", type: "Food", cuisine: "Indian", priceLevel: "$$", price: 2, area: "Hackney", tube: "Shoreditch High St", lat: 51.5216, lng: -0.0740, studentFavorite: true, description: "Trendy Indian" },
+  { name: "Flat Iron Soho", type: "Food", cuisine: "Steak", priceLevel: "$$", price: 2, area: "Soho", tube: "Piccadilly Circus", lat: 51.5160, lng: -0.1351, studentFavorite: true, description: "Cheap steak" },
+  { name: "Padella", type: "Food", cuisine: "Italian", priceLevel: "$$", price: 2, area: "Southwark", tube: "London Bridge", lat: 51.5050, lng: -0.0973, studentFavorite: true, description: "Fresh pasta" },
+  { name: "Pizza Pilgrims", type: "Food", cuisine: "Pizza", priceLevel: "$$", price: 2, area: "Soho", tube: "Leicester Square", lat: 51.5170, lng: -0.1363, studentFavorite: true, description: "Pizza" },
+  { name: "Honest Burgers Soho", type: "Food", cuisine: "Burgers", priceLevel: "$$", price: 2, area: "Soho", tube: "Tottenham Court Rd", lat: 51.5175, lng: -0.1357, studentFavorite: true, description: "Burgers" },
+  { name: "Duck & Waffle", type: "Food", cuisine: "Modern", priceLevel: "$$$", price: 3, area: "City", tube: "Liverpool Street", lat: 51.5202, lng: -0.0844, studentFavorite: true, description: "Sky dining" },
+  { name: "The Breakfast Club Soho", type: "Food", cuisine: "Brunch", priceLevel: "$$", price: 2, area: "Soho", tube: "Tottenham Court Rd", lat: 51.5165, lng: -0.1378, studentFavorite: true, description: "Brunch" },
+  { name: "Bao Soho", type: "Food", cuisine: "Taiwanese", priceLevel: "$$", price: 2, area: "Soho", tube: "Oxford Circus", lat: 51.5155, lng: -0.1398, studentFavorite: true, description: "Bao buns" },
+  { name: "Sketch London", type: "Food", cuisine: "Afternoon Tea", priceLevel: "$$$$", price: 4, area: "Mayfair", tube: "Oxford Circus", lat: 51.5131, lng: -0.1445, studentFavorite: true, description: "Luxury tea" },
+  { name: "Circolo Popolare", type: "Food", cuisine: "Italian", priceLevel: "$$$", price: 3, area: "Westminster", tube: "Oxford Circus", lat: 51.5172, lng: -0.1377, studentFavorite: true, description: "Colorful Italian" },
+  { name: "Gloria Trattoria", type: "Food", cuisine: "Italian", priceLevel: "$$$", price: 3, area: "Hackney", tube: "Old Street", lat: 51.5227, lng: -0.0857, studentFavorite: true, description: "Italian" },
+  { name: "SUSHISAMBA", type: "Food", cuisine: "Japanese", priceLevel: "$$$$", price: 4, area: "City", tube: "Liverpool Street", lat: 51.5202, lng: -0.0844, studentFavorite: true, description: "Sushi" },
+  { name: "Burger & Lobster Soho", type: "Food", cuisine: "Seafood", priceLevel: "$$$", price: 3, area: "Soho", tube: "Leicester Square", lat: 51.5164, lng: -0.1349, studentFavorite: true, description: "Lobster rolls" },
+  { name: "Homeslice Neal's Yard", type: "Food", cuisine: "Pizza", priceLevel: "$$", price: 2, area: "Westminster", tube: "Covent Garden", lat: 51.5135, lng: -0.1228, studentFavorite: true, description: "Big pizza" },
+  { name: "Franco Manca Soho", type: "Food", cuisine: "Pizza", priceLevel: "$", price: 1, area: "Westminster", tube: "Covent Garden", lat: 51.5132, lng: -0.1229, studentFavorite: true, description: "Sourdough pizza" },
+  { name: "Gail's Bakery", type: "Food", cuisine: "Cafe", priceLevel: "$$", price: 2, area: "Soho", tube: "Oxford Circus", lat: 51.5158, lng: -0.1390, studentFavorite: true, description: "Bakery" },
+  { name: "Pret A Manger", type: "Food", cuisine: "Cafe", priceLevel: "$", price: 1, area: "Various", tube: "Various", lat: 51.5160, lng: -0.1300, studentFavorite: true, description: "Grab and go" },
+  { name: "Five Guys Leicester Square", type: "Food", cuisine: "Fast Food", priceLevel: "$$", price: 2, area: "Westminster", tube: "Leicester Square", lat: 51.5113, lng: -0.1282, studentFavorite: true, description: "Burgers" },
+  { name: "Shake Shack Covent Garden", type: "Food", cuisine: "Fast Food", priceLevel: "$$", price: 2, area: "Westminster", tube: "Covent Garden", lat: 51.5134, lng: -0.1219, studentFavorite: true, description: "Burgers" },
+  { name: "Yeye's Dumplings", type: "Food", cuisine: "Asian", priceLevel: "$$", price: 2, area: "City", tube: "Liverpool Street", lat: 51.5195, lng: -0.0850, studentFavorite: true, description: "Dumplings" },
+  { name: "Sky Garden", type: "Bar", priceLevel: "$$", price: 2, area: "City", tube: "Monument", lat: 51.5116, lng: -0.0809, studentFavorite: true, description: "Views" },
+  { name: "Bar Elba", type: "Bar", priceLevel: "$$", price: 2, area: "Lambeth", tube: "Waterloo", lat: 51.5009, lng: -0.1197, studentFavorite: true, description: "Rooftop" },
+  { name: "Pergola Paddington", type: "Bar", priceLevel: "$$", price: 2, area: "Westminster", tube: "Paddington", lat: 51.5156, lng: -0.1753, studentFavorite: true, description: "Outdoor" },
+  { name: "Nightjar", type: "Bar", priceLevel: "$$$", price: 3, area: "Islington", tube: "Old Street", lat: 51.5267, lng: -0.0875, studentFavorite: true, description: "Cocktails" },
+  { name: "The Churchill Arms", type: "Bar", priceLevel: "$$", price: 2, area: "Kensington", tube: "Notting Hill Gate", lat: 51.5095, lng: -0.1977, studentFavorite: true, description: "Pub" },
+  { name: "XOYO", type: "Bar", priceLevel: "$$", price: 2, area: "Islington", tube: "Old Street", lat: 51.5255, lng: -0.0848, studentFavorite: true, description: "Club" },
+  { name: "Fabric", type: "Bar", priceLevel: "$$$", price: 3, area: "Islington", tube: "Farringdon", lat: 51.5198, lng: -0.1035, studentFavorite: true, description: "Nightclub" },
+  { name: "Queen of Hoxton", type: "Bar", priceLevel: "$$", price: 2, area: "Hackney", tube: "Shoreditch", lat: 51.5231, lng: -0.0770, studentFavorite: true, description: "Rooftop" },
+  { name: "The Blues Kitchen Camden", type: "Bar", priceLevel: "$$", price: 2, area: "Camden", tube: "Camden Town", lat: 51.5391, lng: -0.1420, studentFavorite: true, description: "Live music" },
+  { name: "Camden Assembly", type: "Bar", priceLevel: "$$", price: 2, area: "Camden", tube: "Camden Town", lat: 51.5398, lng: -0.1434, studentFavorite: true, description: "Music" },
+  { name: "Aqua Kyoto", type: "Bar", priceLevel: "$$$", price: 3, area: "Westminster", tube: "Oxford Circus", lat: 51.5155, lng: -0.1425, studentFavorite: true, description: "Rooftop" },
+  { name: "The Shard Bar", type: "Bar", priceLevel: "$$$$", price: 4, area: "Southwark", tube: "London Bridge", lat: 51.5045, lng: -0.0862, studentFavorite: true, description: "Views" },
+  { name: "The Ned", type: "Bar", priceLevel: "$$$$", price: 4, area: "City", tube: "Bank", lat: 51.5126, lng: -0.0899, studentFavorite: true, description: "Upscale" },
+  { name: "Tonight Josephine", type: "Bar", priceLevel: "$$", price: 2, area: "Lambeth", tube: "Waterloo", lat: 51.5013, lng: -0.1188, studentFavorite: true, description: "Party" },
+  { name: "Be At One Soho", type: "Bar", priceLevel: "$$", price: 2, area: "Soho", tube: "Tottenham Court Rd", lat: 51.5156, lng: -0.1349, studentFavorite: true, description: "Cocktails" },
+  { name: "Dirty Martini", type: "Bar", priceLevel: "$$$", price: 3, area: "Westminster", tube: "Oxford Circus", lat: 51.5150, lng: -0.1418, studentFavorite: true, description: "Cocktails" },
+  { name: "Simmons Bar Soho", type: "Bar", priceLevel: "$", price: 1, area: "Soho", tube: "Tottenham Court Rd", lat: 51.5150, lng: -0.1349, studentFavorite: true, description: "Cheap drinks" },
+  { name: "The Book Club Shoreditch", type: "Bar", priceLevel: "$$", price: 2, area: "Hackney", tube: "Old Street", lat: 51.5255, lng: -0.0827, studentFavorite: true, description: "Trendy" },
+  { name: "Ballie Ballerson", type: "Bar", priceLevel: "$$", price: 2, area: "Hackney", tube: "Shoreditch", lat: 51.5228, lng: -0.0757, studentFavorite: true, description: "Ball pit bar" },
+  { name: "BrewDog Soho", type: "Bar", priceLevel: "$$", price: 2, area: "Soho", tube: "Oxford Circus", lat: 51.5165, lng: -0.1377, studentFavorite: true, description: "Craft beer" },
+  { name: "Big Ben", type: "Monument", priceLevel: "Free", price: 0, area: "Westminster", tube: "Westminster", lat: 51.4975, lng: -0.1246, studentFavorite: true, description: "Clock" },
+  { name: "Tower of London", type: "Monument", priceLevel: "$$$", price: 3, area: "Tower Hamlets", tube: "Tower Hill", lat: 51.5055, lng: -0.0753, studentFavorite: true, description: "Castle" },
+  { name: "Tower Bridge", type: "Monument", priceLevel: "Free", price: 0, area: "Southwark", tube: "Tower Hill", lat: 51.5055, lng: -0.0753, studentFavorite: true, description: "Bridge" },
+  { name: "Buckingham Palace", type: "Monument", priceLevel: "Free", price: 0, area: "Westminster", tube: "Green Park", lat: 51.5007, lng: -0.1415, studentFavorite: true, description: "Royal" },
+  { name: "Westminster Abbey", type: "Monument", priceLevel: "$$$", price: 3, area: "Westminster", tube: "Westminster", lat: 51.4953, lng: -0.1269, studentFavorite: true, description: "Church" },
+  { name: "St Paul's Cathedral", type: "Monument", priceLevel: "$$$", price: 3, area: "City", tube: "St Pauls", lat: 51.5138, lng: -0.0982, studentFavorite: true, description: "Dome" },
+  { name: "Piccadilly Circus", type: "Monument", priceLevel: "Free", price: 0, area: "Westminster", tube: "Piccadilly Circus", lat: 51.5103, lng: -0.1341, studentFavorite: true, description: "Lights" },
+  { name: "Trafalgar Square", type: "Monument", priceLevel: "Free", price: 0, area: "Westminster", tube: "Charing Cross", lat: 51.5083, lng: -0.1281, studentFavorite: true, description: "Square" },
+  { name: "Abbey Road Crossing", type: "Monument", priceLevel: "Free", price: 0, area: "Camden", tube: "St Johns Wood", lat: 51.5338, lng: -0.1747, studentFavorite: true, description: "Beatles" },
+  { name: "Leadenhall Market", type: "Monument", priceLevel: "Free", price: 0, area: "City", tube: "Bank", lat: 51.5116, lng: -0.0809, studentFavorite: true, description: "Covered" },
+  { name: "London Eye", type: "Activity", priceLevel: "$$$", price: 3, area: "Lambeth", tube: "Waterloo", lat: 51.5033, lng: -0.1195, studentFavorite: true, description: "Wheel" },
+  { name: "The Shard", type: "Activity", priceLevel: "$$$$", price: 4, area: "Southwark", tube: "London Bridge", lat: 51.5045, lng: -0.0862, studentFavorite: true, description: "Tall" },
+  { name: "Somerset House", type: "Activity", priceLevel: "$$", price: 2, area: "Westminster", tube: "Temple", lat: 51.5130, lng: -0.1174, studentFavorite: true, description: "Events" },
+  { name: "Royal Albert Hall", type: "Activity", priceLevel: "$$$", price: 3, area: "Kensington", tube: "South Kensington", lat: 51.5008, lng: -0.1757, studentFavorite: true, description: "Concerts" },
+  { name: "Emirates Stadium", type: "Activity", priceLevel: "$$$", price: 3, area: "Islington", tube: "Arsenal", lat: 51.5550, lng: -0.1084, studentFavorite: true, description: "Arsenal" },
+  { name: "Wembley Stadium", type: "Activity", priceLevel: "$$$", price: 3, area: "Brent", tube: "Wembley Park", lat: 51.5560, lng: -0.2799, studentFavorite: true, description: "Events" },
+  { name: "Hyde Park", type: "Park", priceLevel: "Free", price: 0, area: "Westminster", tube: "Hyde Park Corner", lat: 51.5074, lng: -0.1637, studentFavorite: true, description: "Park" },
+  { name: "Regents Park", type: "Park", priceLevel: "Free", price: 0, area: "Camden", tube: "Regents Park", lat: 51.5315, lng: -0.1444, studentFavorite: true, description: "Garden" },
+  { name: "Primrose Hill", type: "Park", priceLevel: "Free", price: 0, area: "Camden", tube: "Chalk Farm", lat: 51.5403, lng: -0.1618, studentFavorite: true, description: "View" },
+  { name: "Hampstead Heath", type: "Park", priceLevel: "Free", price: 0, area: "Camden", tube: "Hampstead", lat: 51.5680, lng: -0.1605, studentFavorite: true, description: "Nature" },
+  { name: "Greenwich Park", type: "Park", priceLevel: "Free", price: 0, area: "Greenwich", tube: "Cutty Sark", lat: 51.4767, lng: -0.0072, studentFavorite: true, description: "Hill" },
+  { name: "Kensington Gardens", type: "Park", priceLevel: "Free", price: 0, area: "Kensington", tube: "Queensway", lat: 51.5074, lng: -0.1813, studentFavorite: true, description: "Garden" },
+  { name: "St James Park", type: "Park", priceLevel: "Free", price: 0, area: "Westminster", tube: "St James Park", lat: 51.5025, lng: -0.1345, studentFavorite: true, description: "Park" },
+  { name: "Victoria Park", type: "Park", priceLevel: "Free", price: 0, area: "Hackney", tube: "Bethnal Green", lat: 51.5402, lng: -0.0438, studentFavorite: true, description: "Park" },
+  { name: "Clapham Common", type: "Park", priceLevel: "Free", price: 0, area: "Lambeth", tube: "Clapham Common", lat: 51.4623, lng: -0.1567, studentFavorite: true, description: "Park" },
+  { name: "Richmond Park", type: "Park", priceLevel: "Free", price: 0, area: "Richmond", tube: "Richmond", lat: 51.4354, lng: -0.2760, studentFavorite: true, description: "Deer park" },
+  { name: "Oxford Street", type: "Shopping", priceLevel: "$$", price: 2, area: "Westminster", tube: "Oxford Circus", lat: 51.5160, lng: -0.1399, studentFavorite: true, description: "Shopping" },
+  { name: "Covent Garden Market", type: "Shopping", priceLevel: "$$", price: 2, area: "Westminster", tube: "Covent Garden", lat: 51.5135, lng: -0.1228, studentFavorite: true, description: "Shops" },
+  { name: "Carnaby Street", type: "Shopping", priceLevel: "$$", price: 2, area: "Soho", tube: "Oxford Circus", lat: 51.5165, lng: -0.1375, studentFavorite: true, description: "Fashion" },
+  { name: "Westfield London", type: "Shopping", priceLevel: "$$$", price: 3, area: "Hammersmith", tube: "Shepherds Bush", lat: 51.5071, lng: -0.2226, studentFavorite: true, description: "Mall" },
+  { name: "Harrods", type: "Shopping", priceLevel: "$$$$", price: 4, area: "Kensington", tube: "Knightsbridge", lat: 51.4995, lng: -0.1640, studentFavorite: true, description: "Luxury" },
+  { name: "Selfridges", type: "Shopping", priceLevel: "$$$$", price: 4, area: "Westminster", tube: "Bond Street", lat: 51.5160, lng: -0.1433, studentFavorite: true, description: "Department store" },
+  { name: "Camden Market", type: "Shopping", priceLevel: "$$", price: 2, area: "Camden", tube: "Camden Town", lat: 51.5391, lng: -0.1420, studentFavorite: true, description: "Market" },
+  { name: "Portobello Road Market", type: "Shopping", priceLevel: "$$", price: 2, area: "Kensington", tube: "Notting Hill Gate", lat: 51.5153, lng: -0.1988, studentFavorite: true, description: "Vintage" },
+  { name: "Seven Dials", type: "Shopping", priceLevel: "$$", price: 2, area: "Westminster", tube: "Covent Garden", lat: 51.5135, lng: -0.1228, studentFavorite: true, description: "Boutiques" },
+  { name: "King's Road Chelsea", type: "Shopping", priceLevel: "$$$", price: 3, area: "Kensington", tube: "Sloane Square", lat: 51.4873, lng: -0.1612, studentFavorite: true, description: "Shops" }
+];
+
+// Color mapping for types
+const typeColors = {
+  "Food": "#C8102E",
+  "Bar": "#FF6B6B",
+  "Monument": "#FFD700",
+  "Activity": "#4ECDC4",
+  "Park": "#95E77D",
+  "Shopping": "#FF1493",
+  "Area": "#87CEEB",
+  "Transport": "#708090"
+};
+
+// Icon mapping for types
+const typeIcons = {
+  "Food": "🍽️",
+  "Bar": "🍺",
+  "Monument": "🏛️",
+  "Activity": "🎭",
+  "Park": "🌳",
+  "Shopping": "🛍️",
+  "Area": "🗺️",
+  "Transport": "🚇"
+};
+
+// Price color intensity
+const priceColors = {
+  0: "#4ECDC4",      // Free - teal
+  1: "#95E77D",      // $ - light green
+  2: "#FFD700",      // $$ - gold
+  3: "#FF8C00",      // $$$ - orange
+  4: "#FF4500"       // $$$$ - red orange
+};

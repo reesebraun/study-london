@@ -502,27 +502,189 @@ footer {
 
 .map-controls {
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
-  padding: 20px;
+  padding: 16px 20px;
+  background-color: white;
+  border-bottom: 1px solid #e9ecef;
+  position: relative;
 }
 
-.filter-btn {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 999px;
-  background-color: #e5e7eb;
-  color: #1f2933;
+.filter-toggle {
+  padding: 10px 16px;
+  border: 2px solid #003D82;
+  border-radius: 20px;
+  background-color: white;
+  color: #003D82;
   cursor: pointer;
   font-size: 0.95rem;
-  transition: 0.2s ease;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
-  background-color: #1f7a5c;
+.filter-toggle:hover {
+  background-color: #003D82;
   color: white;
+}
+
+.filter-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  z-index: 1001;
+  width: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+
+.filter-panel.active {
+  display: block;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.filter-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #003D82;
+}
+
+.close-filter {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.close-filter:hover {
+  color: #003D82;
+}
+
+.filter-section {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-section h4 {
+  margin: 0 0 12px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #003D82;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.filter-checkbox:hover {
+  color: #003D82;
+}
+
+.filter-checkbox input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: #C8102E;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.filter-btn-reset {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  color: #666;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.filter-btn-reset:hover {
+  border-color: #999;
+  color: #333;
+}
+
+.filter-btn-apply {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #C8102E;
+  color: white;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.filter-btn-apply:hover {
+  background-color: #a00725;
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e9ecef;
+  z-index: 100;
+}
+
+.map-legend h4 {
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #003D82;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.legend-icon {
+  font-size: 1.2rem;
 }
 
 .map-section {

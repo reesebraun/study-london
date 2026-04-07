@@ -7,13 +7,61 @@
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
+  <!-- Mapbox GL JS CSS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .map-section {
+      position: relative;
+      height: 600px;
+    }
+
+    .map-overlay {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .marker-tooltip {
+      position: fixed;
+      background: white;
+      padding: 10px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      font-size: 13px;
+      color: #333;
+      max-width: 200px;
+      z-index: 1000;
+      pointer-events: none;
+      white-space: normal;
+      line-height: 1.4;
+      border-left: 3px solid #C8102E;
+    }
+
+    .marker-tooltip-name {
+      font-weight: 600;
+      color: #003D82;
+      margin-bottom: 4px;
+    }
+
+    .marker-tooltip-info {
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
 
@@ -36,14 +84,93 @@
   </header>
 
   <section class="map-controls">
-    <button class="filter-btn active" data-category="all">All</button>
-    <button class="filter-btn" data-category="food">Food & Coffee</button>
-    <button class="filter-btn" data-category="neighborhood">Neighborhoods</button>
-    <button class="filter-btn" data-category="activity">Activities</button>
+    <button class="filter-toggle" id="filterToggle">
+      <span style="margin-right: 8px;">🔍</span> Filters
+    </button>
+    
+    <div class="filter-panel" id="filterPanel">
+      <div class="filter-header">
+        <h3>Filter Locations</h3>
+        <button class="close-filter" id="closeFilter">✕</button>
+      </div>
+      
+      <div class="filter-section">
+        <h4>Category</h4>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="category" value="Food" checked> 🍽️ Food & Restaurants
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="category" value="Bar" checked> 🍺 Bars & Nightlife
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="category" value="Monument" checked> 🏛️ Monuments & Landmarks
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="category" value="Activity" checked> 🎭 Activities & Attractions
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="category" value="Park" checked> 🌳 Parks & Green Spaces
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="category" value="Shopping" checked> 🛍️ Shopping
+        </label>
+      </div>
+      
+      <div class="filter-section">
+        <h4>Price Level</h4>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="price" value="0" checked> Free
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="price" value="1" checked> $ (Budget)
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="price" value="2" checked> $$ (Moderate)
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="price" value="3" checked> $$$ (Expensive)
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" name="price" value="4" checked> $$$$ (Luxury)
+        </label>
+      </div>
+      
+      <div class="filter-actions">
+        <button class="filter-btn-reset" id="resetFilters">Reset All</button>
+        <button class="filter-btn-apply" id="applyFilters">Apply Filters</button>
+      </div>
+    </div>
   </section>
 
   <section class="map-section">
     <div id="map"></div>
+    <div class="map-legend">
+      <h4>Legend</h4>
+      <div class="legend-item">
+        <span class="legend-icon">🍽️</span>
+        <span>Food</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon">🍺</span>
+        <span>Bars</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon">🏛️</span>
+        <span>Monuments</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon">🎭</span>
+        <span>Activities</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon">🌳</span>
+        <span>Parks</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon">🛍️</span>
+        <span>Shopping</span>
+      </div>
+    </div>
   </section>
 
   <section class="map-notes">
@@ -58,13 +185,198 @@
     <p>Group 12 | DCDA Capstone Project</p>
   </footer>
 
-  <!-- Leaflet JS -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
+  <!-- Mapbox GL JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 
-  <script src="map.js"></script>
+  <!-- Data file -->
+  <script src="map-data.js"></script>
+
+  <script>
+    // Set your Mapbox token
+    mapboxgl.accessToken = 'pk.eyJ1IjoicmVlc2VicmF1biIsImEiOiJjbWx0cHBnZTYwMnBlM2ZwdjQxNmQwZzltIn0.Nr9nHuokI7a96ch9D26mdg';
+
+    // Initialize the map
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/reesebraun/cmn7ppwrl000101s59pkg5lr8',
+      center: [-0.1276, 51.5074],
+      zoom: 12
+    });
+
+    // Add controls
+    map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+    map.addControl(new mapboxgl.FullscreenControl());
+
+    // Store markers for filtering
+    let markers = [];
+    let filteredMarkers = [];
+    let currentTooltip = null;
+
+    // Create markers for all locations
+    function createMarkers() {
+      londonLocations.forEach(location => {
+        const el = document.createElement('div');
+        el.className = 'marker';
+        
+        // Get icon and color for type
+        const icon = typeIcons[location.type] || '📍';
+        const color = typeColors[location.type] || '#999';
+        
+        el.innerHTML = icon;
+        el.style.width = '28px';
+        el.style.height = '28px';
+        el.style.borderRadius = '50%';
+        el.style.cursor = 'pointer';
+        el.style.display = 'flex';
+        el.style.alignItems = 'center';
+        el.style.justifyContent = 'center';
+        el.style.fontSize = '16px';
+        el.style.backgroundColor = 'white';
+        el.style.border = `2px solid ${color}`;
+        el.style.boxShadow = `0 2px 6px rgba(0, 0, 0, 0.2)`;
+        el.style.transition = 'all 0.2s ease';
+        el.dataset.type = location.type;
+        el.dataset.price = location.price;
+        
+        // Hover effect
+        el.addEventListener('mouseenter', function(e) {
+          this.style.boxShadow = `0 4px 12px rgba(0, 0, 0, 0.3)`;
+          
+          // Remove previous tooltip
+          if (currentTooltip) {
+            currentTooltip.remove();
+          }
+          
+          // Create tooltip
+          const tooltip = document.createElement('div');
+          tooltip.className = 'marker-tooltip';
+          tooltip.innerHTML = `
+            <div class="marker-tooltip-name">${location.name}</div>
+            <div class="marker-tooltip-info">
+              <strong>${location.type}</strong> • ${location.priceLevel}<br>
+              ${location.description}
+            </div>
+          `;
+          
+          document.body.appendChild(tooltip);
+          
+          // Position tooltip above the marker
+          const rect = el.getBoundingClientRect();
+          const tooltipWidth = tooltip.offsetWidth;
+          const left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+          const top = rect.top - tooltip.offsetHeight - 10;
+          
+          tooltip.style.left = left + 'px';
+          tooltip.style.top = top + 'px';
+          
+          currentTooltip = tooltip;
+        });
+        
+        el.addEventListener('mouseleave', function() {
+          this.style.boxShadow = `0 2px 6px rgba(0, 0, 0, 0.2)`;
+          
+          if (currentTooltip) {
+            currentTooltip.remove();
+            currentTooltip = null;
+          }
+        });
+
+        // Add marker to map
+        const marker = new mapboxgl.Marker(el)
+          .setLngLat([location.lng, location.lat])
+          .setPopup(new mapboxgl.Popup({ offset: 25 })
+            .setHTML(`
+              <div style="padding: 10px; font-family: system-ui;">
+                <strong style="font-size: 16px;">${location.name}</strong><br>
+                <small style="color: #666;">${location.type}</small><br>
+                <small style="color: #666;">${location.description}</small><br>
+                <small style="color: #999;">Price: ${location.priceLevel}</small>
+              </div>
+            `))
+          .addTo(map);
+
+        markers.push({
+          element: marker,
+          data: location
+        });
+      });
+
+      filteredMarkers = [...markers];
+    }
+
+    // Filter markers based on active filters
+    function applyFilters() {
+      const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(el => el.value);
+      const selectedPrices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(el => el.value);
+
+      markers.forEach(markerObj => {
+        const isCategoryMatch = selectedCategories.length === 0 || selectedCategories.includes(markerObj.data.type);
+        const isPriceMatch = selectedPrices.length === 0 || selectedPrices.includes(markerObj.data.price.toString());
+        
+        if (isCategoryMatch && isPriceMatch) {
+          markerObj.element.addTo(map);
+        } else {
+          markerObj.element.remove();
+        }
+      });
+    }
+
+    // Filter button event listeners
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const filterType = this.dataset.filter;
+        
+        // Remove active class from sibling buttons
+        document.querySelectorAll(`[data-filter="${filterType}"]`).forEach(b => {
+          b.classList.remove('active');
+        });
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Apply filters
+        applyFilters();
+      });
+    });
+
+    // Create markers when map is loaded
+    map.on('load', function() {
+      createMarkers();
+    });
+
+    // Filter panel toggle
+    const filterToggle = document.getElementById('filterToggle');
+    const filterPanel = document.getElementById('filterPanel');
+    const closeFilter = document.getElementById('closeFilter');
+    const applyFiltersBtn = document.getElementById('applyFilters');
+    const resetFiltersBtn = document.getElementById('resetFilters');
+
+    filterToggle.addEventListener('click', function() {
+      filterPanel.classList.toggle('active');
+    });
+
+    closeFilter.addEventListener('click', function() {
+      filterPanel.classList.remove('active');
+    });
+
+    applyFiltersBtn.addEventListener('click', function() {
+      applyFilters();
+      filterPanel.classList.remove('active');
+    });
+
+    resetFiltersBtn.addEventListener('click', function() {
+      document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = true;
+      });
+      applyFilters();
+    });
+
+    // Close filter panel when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.map-controls')) {
+        filterPanel.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
