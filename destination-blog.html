@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destination Guide | Study London</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <h1 class="logo">Study London</h1>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="budget.html">Budget</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="guide.html">Guide</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <h2>Destination Guide</h2>
+    <p>Read student testimonials, tips, and experiences from travelers like you.</p>
+  </header>
+
+  <!-- Main Content -->
+  <div class="blog-wrapper">
+    <article class="blog-post">
+      <div id="blog-header">
+        <!-- Header content will be populated by JavaScript -->
+      </div>
+
+      <section class="blog-section">
+        <h2>Student Testimonials</h2>
+        <div id="blog-testimonials">
+          <!-- Testimonials will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <section class="blog-section">
+        <h2>What to Do & See</h2>
+        <div id="blog-highlights" class="highlights-grid">
+          <!-- Highlights will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <section class="blog-section">
+        <h2>Traveler Tips</h2>
+        <div id="blog-tips" class="tips-list">
+          <!-- Tips will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <section class="blog-section">
+        <h2>Practical Info</h2>
+        <div id="blog-practical" class="practical-grid">
+          <!-- Practical info will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <div class="blog-back-link">
+        <a href="travel.html" class="back-btn">← Back to Travel Planner</a>
+      </div>
+    </article>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Group 12 | DCDA Capstone Project</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="travel-data.js"></script>
+  <script>
+    // Get city from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const cityName = urlParams.get('city');
+    const destination = travelDestinations.find(d => d.name.toLowerCase() === cityName?.toLowerCase());
+
+    if (!destination) {
+      document.querySelector('.blog-wrapper').innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+          <h2>Destination not found</h2>
+          <p><a href="travel.html">Return to Travel Planner</a></p>
+        </div>
+      `;
+    } else {
+      // Populate header
+      const headerDiv = document.getElementById('blog-header');
+      headerDiv.innerHTML = `
+        <div class="blog-header-content">
+          <div class="blog-image">${destination.image}</div>
+          <h1>${destination.name}, ${destination.country}</h1>
+          <p class="blog-subtitle">${destination.description}</p>
+          <div class="blog-meta">
+            <span>💰 ${destination.estimated_cost}</span>
+            <span>⏱️ ${destination.travel_time} from London</span>
+            <span>📅 ${destination.duration}</span>
+            <span>${vibeEmojis[destination.vibe]} ${destination.vibe.charAt(0).toUpperCase() + destination.vibe.slice(1)}</span>
+          </div>
+        </div>
+      `;
+
+      // Populate testimonials
+      const testimonialsDiv = document.getElementById('blog-testimonials');
+      const relatedTestimonials = studentTestimonials.filter(t => t.destination_id.includes(destination.id));
+      
+      if (relatedTestimonials.length > 0) {
+        testimonialsDiv.innerHTML = relatedTestimonials.map(t => `
+          <div class="testimonial-block">
+            <div class="testimonial-header-block">
+              <div style="font-size: 2rem;">${t.image}</div>
+              <div>
+                <h3>${t.name}</h3>
+                <p>${t.year}</p>
+              </div>
+            </div>
+            <blockquote>"${t.text}"</blockquote>
+          </div>
+        `).join('');
+      } else {
+        testimonialsDiv.innerHTML = '<p>No testimonials yet. Be the first to share your experience!</p>';
+      }
+
+      // Populate highlights
+      const highlightsDiv = document.getElementById('blog-highlights');
+      highlightsDiv.innerHTML = destination.highlights.map(highlight => `
+        <div class="highlight-item">
+          <h3>✨ ${highlight}</h3>
+          <p>A must-see attraction in ${destination.name}</p>
+        </div>
+      `).join('');
+
+      // Populate tips
+      const tipsDiv = document.getElementById('blog-tips');
+      tipsDiv.innerHTML = `
+        <div class="tip-item">
+          <h3>💡 Student Insider Tip</h3>
+          <p>${destination.student_tips}</p>
+        </div>
+        <div class="tip-item">
+          <h3>🎯 Best Time to Visit</h3>
+          <p>${destination.best_season.map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ')}</p>
+        </div>
+        <div class="tip-item">
+          <h3>🎨 Top Interests</h3>
+          <p>${destination.interests.map(i => i.charAt(0).toUpperCase() + i.slice(1)).join(', ')}</p>
+        </div>
+      `;
+
+      // Populate practical info
+      const practicalDiv = document.getElementById('blog-practical');
+      practicalDiv.innerHTML = `
+        <div class="practical-item">
+          <h3>💰 Budget</h3>
+          <p>${destination.budget.charAt(0).toUpperCase() + destination.budget.slice(1)}</p>
+          <p>Estimated: ${destination.estimated_cost}</p>
+        </div>
+        <div class="practical-item">
+          <h3>✈️ Getting There</h3>
+          <p>From London: ${destination.travel_time}</p>
+          <p>Check for direct flights or budget airlines</p>
+        </div>
+        <div class="practical-item">
+          <h3>📅 Trip Duration</h3>
+          <p>${destination.duration}</p>
+          <p>Ideal for a weekend or extended break</p>
+        </div>
+        <div class="practical-item">
+          <h3>🌍 Vibe</h3>
+          <p>${destination.vibe.charAt(0).toUpperCase() + destination.vibe.slice(1)}</p>
+          <p>Perfect if you're looking for a ${destination.vibe} experience</p>
+        </div>
+      `;
+
+      // Update page title
+      document.title = `${destination.name} | Study London - Travel Guide`;
+    }
+  </script>
+
+  <!-- Inline Styles for Blog Page -->
+  <style>
+    .blog-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .blog-post {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    #blog-header {
+      background: linear-gradient(135deg, rgba(0, 61, 130, 0.1), rgba(200, 16, 46, 0.1));
+      padding: 2rem;
+      border-bottom: 3px solid #C8102E;
+    }
+
+    .blog-header-content {
+      text-align: center;
+    }
+
+    .blog-image {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    #blog-header h1 {
+      font-size: 2.2rem;
+      color: #003D82;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .blog-subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .blog-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      font-size: 0.95rem;
+      color: #003D82;
+      font-weight: 600;
+    }
+
+    .blog-section {
+      padding: 2.5rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .blog-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .blog-section h2 {
+      font-size: 1.6rem;
+      color: #003D82;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      border-bottom: 2px solid #C8102E;
+      padding-bottom: 0.8rem;
+    }
+
+    .testimonial-block {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #C8102E;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-header-block {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .testimonial-header-block h3 {
+      color: #003D82;
+      margin-bottom: 0.2rem;
+    }
+
+    .testimonial-header-block p {
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    .testimonial-block blockquote {
+      font-style: italic;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .highlight-item {
+      background: white;
+      border: 2px solid #f0f0f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .highlight-item:hover {
+      border-color: #C8102E;
+      box-shadow: 0 4px 12px rgba(200, 16, 46, 0.1);
+    }
+
+    .highlight-item h3 {
+      color: #003D82;
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-item p {
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .tips-list {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .tip-item {
+      background: linear-gradient(135deg, rgba(0, 61, 130, 0.05), rgba(200, 16, 46, 0.05));
+      border-left: 4px solid #C8102E;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .tip-item h3 {
+      color: #003D82;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .tip-item p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .practical-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .practical-item {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .practical-item h3 {
+      color: #003D82;
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .practical-item p {
+      color: #555;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-back-link {
+      padding: 2rem;
+      text-align: center;
+      background: #f9f9f9;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background-color: #003D82;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #1e1e3f;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .blog-wrapper {
+        padding: 0 1rem 2rem;
+      }
+
+      #blog-header {
+        padding: 1.5rem;
+      }
+
+      #blog-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .blog-meta {
+        gap: 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      .blog-section {
+        padding: 1.5rem;
+      }
+
+      .highlights-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .practical-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .blog-image {
+        font-size: 3rem;
+      }
+
+      #blog-header h1 {
+        font-size: 1.4rem;
+      }
+
+      .practical-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</body>
+</html>

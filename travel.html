@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Planner | Study London</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <h1 class="logo">Study London</h1>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="budget.html">Budget</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="guide.html">Guide</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <h2>Plan Your European Trip</h2>
+    <p>Find the perfect destination that matches your budget, interests, and travel style.</p>
+  </header>
+
+  <!-- Main Content -->
+  <div class="travel-wrapper">
+    <!-- Filter Section (Top Button) -->
+    <section class="map-controls">
+      <button class="filter-toggle" id="travelFilterToggle">
+        <span style="margin-right: 8px;">🔍</span> Filter Destinations
+      </button>
+      
+      <div class="filter-panel" id="travelFilterPanel">
+        <div class="filter-header">
+          <h3>Find Your Destination</h3>
+          <button class="close-filter" id="closeTravelFilter">✕</button>
+        </div>
+
+        <!-- Budget Filter -->
+        <div class="filter-section">
+          <h4>Budget</h4>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-budget" value="budget" checked> 💰 Budget (£50-130)
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-budget" value="moderate" checked> 💸 Moderate (£130-200)
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-budget" value="expensive" checked> 💎 Splurge (£200+)
+          </label>
+        </div>
+
+        <!-- Trip Length Filter -->
+        <div class="filter-section">
+          <h4>Trip Length</h4>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-duration" value="weekend" checked> 🎫 Weekend (2-3 days)
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-duration" value="extended" checked> 📅 Extended (3-4 days)
+          </label>
+        </div>
+
+        <!-- Season Filter -->
+        <div class="filter-section">
+          <h4>Best Time to Visit</h4>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-season" value="spring" checked> 🌸 Spring
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-season" value="summer" checked> ☀️ Summer
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-season" value="fall" checked> 🍂 Fall
+          </label>
+        </div>
+
+        <!-- Interests Filter -->
+        <div class="filter-section">
+          <h4>Interests</h4>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-interests" value="nightlife"> 🎉 Nightlife
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-interests" value="culture"> 🎨 Culture & Art
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-interests" value="food"> 🍽️ Food
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-interests" value="beach"> 🏖️ Beach
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-interests" value="history"> 📚 History
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-interests" value="relaxation"> 😌 Relaxation
+          </label>
+        </div>
+
+        <!-- Vibe Filter -->
+        <div class="filter-section">
+          <h4>Vibe</h4>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-vibe" value="social"> 🎉 Social
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-vibe" value="romantic"> 💕 Romantic
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-vibe" value="artsy"> 🎨 Artsy
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-vibe" value="historic"> 📚 Historic
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-vibe" value="relaxed"> 😌 Relaxed
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="travel-vibe" value="energetic"> ⚡ Energetic
+          </label>
+        </div>
+
+        <!-- Filter Actions -->
+        <div class="filter-actions">
+          <button class="filter-btn-reset" id="resetTravelFilters">Reset All</button>
+          <button class="filter-btn-apply" id="applyTravelFilters">Apply Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Container -->
+    <section class="map-section">
+      <div id="travel-map"></div>
+    </section>
+
+    <!-- Destinations Grid -->
+    <section class="travel-destinations">
+      <h2>Matching Destinations</h2>
+      <div id="destinations-grid" class="destinations-grid">
+        <!-- Cards will be populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="travel-testimonials">
+      <h2>Student Experiences</h2>
+      <div class="testimonials-grid">
+        <!-- Testimonials will be populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Student Tips Section -->
+    <section class="travel-tips">
+      <h2>Student-Approved Travel Tips</h2>
+      <div class="advice-grid">
+        <div class="advice-card">
+          <h3>🧳 Pack the basics</h3>
+          <p>Bring staple clothes and essentials so you do not waste money rebuying basics once you get there.</p>
+        </div>
+        <div class="advice-card">
+          <h3>🍽 Budget for small extras</h3>
+          <p>Some cities charge for things you might not expect, even basics like water, so the total can add up quickly.</p>
+        </div>
+        <div class="advice-card">
+          <h3>🍝 Mix eating out with cooking</h3>
+          <p>Save restaurants for the experiences you really want and make a few meals at home to stretch your budget.</p>
+        </div>
+        <div class="advice-card">
+          <h3>💱 Watch exchange rates</h3>
+          <p>Know the currency conversion before your trip so prices do not feel cheaper than they really are.</p>
+        </div>
+        <div class="advice-card">
+          <h3>🏨 Compare every stay option</h3>
+          <p>The cheapest place to stay changes by city, so compare hostels, Airbnbs, and hotels every time.</p>
+        </div>
+        <div class="advice-card">
+          <h3>👯 Travel with your budget in mind</h3>
+          <p>Trips are more fun when everyone wants the same type of experience and is comfortable with the same spending level.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Group 12 | DCDA Capstone Project</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="travel-data.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <script>
+    // ============ MAPBOX SETUP ============
+    mapboxgl.accessToken = 'pk.eyJ1IjoicmVlc2VicmF1biIsImEiOiJjbWx0cHBnZTYwMnBlM2ZwdjQxNmQwZzltIn0.Nr9nHuokI7a96ch9D26mdg';
+
+    let map;
+    let markers = [];
+    let allDestinations = [...travelDestinations];
+    let filteredDestinations = [...travelDestinations];
+    let currentHoverTooltip = null;
+
+    // Initialize map
+    function initializeTravelMap() {
+      map = new mapboxgl.Map({
+        container: 'travel-map',
+        style: 'mapbox://styles/mapbox/light-v11',
+        center: [2.5, 50],
+        zoom: 4
+      });
+
+      map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+      map.addControl(new mapboxgl.FullscreenControl());
+
+      createTravelMarkers();
+    }
+
+    // ============ CREATE MARKERS ============
+    function createTravelMarkers() {
+      // Remove existing markers
+      markers.forEach(marker => marker.remove());
+      markers = [];
+
+      filteredDestinations.forEach(destination => {
+        const el = document.createElement('div');
+        el.className = 'travel-marker';
+        el.textContent = destination.image;
+        el.style.cursor = 'pointer';
+        el.style.fontSize = '24px';
+        el.style.width = '32px';
+        el.style.height = '32px';
+        el.style.display = 'flex';
+        el.style.alignItems = 'center';
+        el.style.justifyContent = 'center';
+        el.style.backgroundColor = 'white';
+        el.style.border = '2px solid #C8102E';
+        el.style.borderRadius = '50%';
+        el.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
+        el.style.transition = 'all 0.2s ease';
+        
+        const marker = new mapboxgl.Marker(el)
+          .setLngLat(destination.coordinates)
+          .addTo(map);
+
+        // Hover effects - show tooltip
+        el.addEventListener('mouseenter', function(e) {
+          this.style.boxShadow = '0 4px 12px rgba(200, 16, 46, 0.4)';
+          this.style.transform = 'scale(1.15)';
+          
+          // Remove previous tooltip
+          if (currentHoverTooltip) {
+            currentHoverTooltip.remove();
+          }
+          
+          // Create hover tooltip
+          const tooltip = document.createElement('div');
+          tooltip.className = 'travel-tooltip';
+          tooltip.innerHTML = `
+            <div class="tooltip-name">${destination.name}, ${destination.country}</div>
+            <div class="tooltip-info">
+              <div><strong>💰</strong> ${destination.estimated_cost}</div>
+              <div><strong>⏱️</strong> ${destination.travel_time}</div>
+              <div><strong>⭐</strong> ${destination.vibe}</div>
+            </div>
+            <div class="tooltip-cta">Click for more details →</div>
+          `;
+          document.body.appendChild(tooltip);
+          currentHoverTooltip = tooltip;
+          
+          // Position tooltip near cursor
+          const rect = e.target.getBoundingClientRect();
+          tooltip.style.left = (rect.right + 10) + 'px';
+          tooltip.style.top = (rect.top - 10) + 'px';
+        });
+
+        el.addEventListener('mouseleave', function() {
+          this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
+          this.style.transform = 'scale(1)';
+          
+          if (currentHoverTooltip) {
+            currentHoverTooltip.remove();
+            currentHoverTooltip = null;
+          }
+        });
+
+        // Click to zoom and open popup
+        el.addEventListener('click', function() {
+          // Zoom to destination
+          map.flyTo({
+            center: destination.coordinates,
+            zoom: 10,
+            duration: 1500
+          });
+
+          // Create and show popup
+          const popup = new mapboxgl.Popup({ offset: 25 })
+            .setLngLat(destination.coordinates)
+            .setHTML(`
+              <div class="travel-popup">
+                <h3>${destination.name}</h3>
+                <p><strong>${destination.country}</strong></p>
+                <p>${destination.description}</p>
+                <div class="popup-tags">
+                  <span class="popup-tag budget">${destination.budget}</span>
+                  <span class="popup-tag vibe">${Array.isArray(destination.vibe) ? destination.vibe.join(', ') : destination.vibe}</span>
+                </div>
+                <div class="popup-details">
+                  <p><strong>💰 Cost:</strong> ${destination.estimated_cost}</p>
+                  <p><strong>📅 Duration:</strong> ${destination.duration_label}</p>
+                  <p><strong>💡 Student Tip:</strong> ${destination.student_tip}</p>
+                </div>
+                <a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="popup-btn">Read Student Guide →</a>
+              </div>
+            `)
+            .addTo(map);
+        });
+
+        markers.push(marker);
+      });
+    }
+
+    // ============ RENDER DESTINATION CARDS ============
+    function renderDestinationCards() {
+      const grid = document.getElementById('destinations-grid');
+      grid.innerHTML = '';
+
+      if (filteredDestinations.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666; padding: 2rem;">No destinations match your filters. Try adjusting them!</p>';
+        return;
+      }
+
+      filteredDestinations.forEach(destination => {
+        const card = document.createElement('div');
+        card.className = 'destination-card';
+        card.innerHTML = `
+          <div class="destination-image">${destination.image}</div>
+          <div class="destination-header">
+            <h3>${destination.name}</h3>
+            <p class="destination-country">${destination.country}</p>
+          </div>
+          <p class="destination-description">${destination.description}</p>
+          <div class="destination-quickfacts">
+            <span>💰 ${destination.estimated_cost}</span>
+            <span>📅 ${destination.duration_label}</span>
+            <span>🌍 ${Array.isArray(destination.best_season) ? destination.best_season.join(', ') : destination.best_season}</span>
+            <span>⭐ ${Array.isArray(destination.vibe) ? destination.vibe.join(', ') : destination.vibe}</span>
+          </div>
+          <div class="destination-tags">
+            ${destination.interests.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+          <p class="destination-tip"><strong>💡 Student Tip:</strong> ${destination.student_tip}</p>
+          <a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="destination-link-btn">
+            View Student Guide
+          </a>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ============ RENDER TESTIMONIALS ============
+    function renderTestimonials() {
+      const section = document.querySelector('.testimonials-grid');
+      section.innerHTML = '';
+
+      studentTestimonials.slice(0, 6).forEach(testimonial => {
+        const destinations = testimonial.destination_id
+          .map(id => allDestinations.find(d => d.id === id)?.name)
+          .filter(Boolean)
+          .join(', ');
+
+        const card = document.createElement('div');
+        card.className = 'travel-testimonial-card';
+        card.innerHTML = `
+          <div class="testimonial-header">
+            <div class="testimonial-avatar">${testimonial.image}</div>
+            <div class="testimonial-info">
+              <h4>${testimonial.name}</h4>
+              <p>${testimonial.year}</p>
+            </div>
+          </div>
+          <p class="testimonial-quote">"${testimonial.text}"</p>
+          <p class="testimonial-destination"><strong>Visited:</strong> ${destinations}</p>
+        `;
+        section.appendChild(card);
+      });
+    }
+
+    // ============ FILTER LOGIC ============
+    function applyTravelFilters() {
+      // Get selected filter values
+      const budgetChecks = Array.from(document.querySelectorAll('input[name="travel-budget"]:checked')).map(el => el.value);
+      const durationChecks = Array.from(document.querySelectorAll('input[name="travel-duration"]:checked')).map(el => el.value);
+      const seasonChecks = Array.from(document.querySelectorAll('input[name="travel-season"]:checked')).map(el => el.value);
+      const interestChecks = Array.from(document.querySelectorAll('input[name="travel-interests"]:checked')).map(el => el.value);
+      const vibeChecks = Array.from(document.querySelectorAll('input[name="travel-vibe"]:checked')).map(el => el.value);
+
+      // Filter destinations based on selections
+      filteredDestinations = allDestinations.filter(destination => {
+        // Budget filter
+        if (budgetChecks.length > 0 && !budgetChecks.includes(destination.budget)) return false;
+
+        // Duration filter
+        if (durationChecks.length > 0) {
+          const hasDuration = durationChecks.some(check => {
+            if (check === 'weekend') return destination.duration.includes('2-3');
+            if (check === 'extended') return destination.duration.includes('3-4') || destination.duration.includes('4');
+            return false;
+          });
+          if (!hasDuration) return false;
+        }
+
+        // Season filter
+        if (seasonChecks.length > 0) {
+          const hasSeasonMatch = seasonChecks.some(season => destination.best_season.includes(season));
+          if (!hasSeasonMatch) return false;
+        }
+
+        // Interest filter
+        if (interestChecks.length > 0) {
+          const hasInterestMatch = interestChecks.some(interest => destination.interests.includes(interest));
+          if (!hasInterestMatch) return false;
+        }
+
+        // Vibe filter
+        if (vibeChecks.length > 0 && !vibeChecks.includes(destination.vibe)) return false;
+
+        return true;
+      });
+
+      // Update UI
+      renderDestinationCards();
+      createTravelMarkers();
+
+      // Close filter panel on mobile
+      if (window.innerWidth <= 768) {
+        document.getElementById('travelFilterPanel').classList.remove('active');
+      }
+    }
+
+    function resetTravelFilters() {
+      const defaults = {
+        "travel-budget": ["budget", "moderate", "expensive"],
+        "travel-duration": ["weekend", "extended"],
+        "travel-season": ["spring", "summer", "fall"],
+        "travel-interests": [],
+        "travel-vibe": [],
+        "travel-style": [],
+        "travel-priority": []
+      };
+
+      document.querySelectorAll('#travelFilterPanel input[type="checkbox"]').forEach(input => {
+        const group = input.name;
+        input.checked = defaults[group]?.includes(input.value) || false;
+      });
+
+      filteredDestinations = [...allDestinations];
+      renderDestinationCards();
+      createTravelMarkers();
+    }
+
+    // ============ FILTER PANEL TOGGLE ============
+    document.getElementById('travelFilterToggle').addEventListener('click', function() {
+      document.getElementById('travelFilterPanel').classList.toggle('active');
+    });
+
+    document.getElementById('closeTravelFilter').addEventListener('click', function() {
+      document.getElementById('travelFilterPanel').classList.remove('active');
+    });
+
+    document.getElementById('applyTravelFilters').addEventListener('click', applyTravelFilters);
+    document.getElementById('resetTravelFilters').addEventListener('click', resetTravelFilters);
+
+    // ============ INITIALIZE ON PAGE LOAD ============
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeTravelMap();
+      renderDestinationCards();
+      renderTestimonials();
+    });
+  </script>
+</body>
+</html>
