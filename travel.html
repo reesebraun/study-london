@@ -141,6 +141,8 @@
     <!-- Destinations Grid -->
     <section class="travel-destinations">
       <h2>Matching Destinations</h2>
+      <!-- Results Summary (NEW) -->
+      <div id="filter-results-summary" class="filter-results-summary"></div>
       <div id="destinations-grid" class="destinations-grid">
         <!-- Cards will be populated by JavaScript -->
       </div>
@@ -229,7 +231,7 @@
       filteredDestinations.forEach(destination => {
         const el = document.createElement('div');
         el.className = 'travel-marker';
-        el.textContent = destination.image;
+        el.textContent = destination.marker_emoji;
         el.style.cursor = 'pointer';
         el.style.fontSize = '24px';
         el.style.width = '32px';
@@ -240,8 +242,7 @@
         el.style.backgroundColor = 'white';
         el.style.border = '2px solid #C8102E';
         el.style.borderRadius = '50%';
-        el.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
-        el.style.transition = 'all 0.2s ease';
+        el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
         
         const marker = new mapboxgl.Marker(el)
           .setLngLat(destination.coordinates)
@@ -249,8 +250,6 @@
 
         // Hover effects - show tooltip
         el.addEventListener('mouseenter', function(e) {
-          this.style.boxShadow = '0 4px 12px rgba(200, 16, 46, 0.4)';
-          this.style.transform = 'scale(1.15)';
           
           // Remove previous tooltip
           if (currentHoverTooltip) {
@@ -279,42 +278,28 @@
         });
 
         el.addEventListener('mouseleave', function() {
-          this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
-          this.style.transform = 'scale(1)';
-          
           if (currentHoverTooltip) {
             currentHoverTooltip.remove();
             currentHoverTooltip = null;
           }
         });
 
-        // Click to zoom and open popup
-        el.addEventListener('click', function() {
-          // Zoom to destination
-          map.flyTo({
-            center: destination.coordinates,
-            zoom: 10,
-            duration: 1500
-          });
+        // Click to open popup
+        el.addEventListener('click', function(e) {
+          e.stopPropagation();
 
-          // Create and show popup
-          const popup = new mapboxgl.Popup({ offset: 25 })
+          new mapboxgl.Popup({ offset: 25 })
             .setLngLat(destination.coordinates)
             .setHTML(`
               <div class="travel-popup">
                 <h3>${destination.name}</h3>
                 <p><strong>${destination.country}</strong></p>
                 <p>${destination.description}</p>
-                <div class="popup-tags">
-                  <span class="popup-tag budget">${destination.budget}</span>
-                  <span class="popup-tag vibe">${Array.isArray(destination.vibe) ? destination.vibe.join(', ') : destination.vibe}</span>
-                </div>
-                <div class="popup-details">
-                  <p><strong>💰 Cost:</strong> ${destination.estimated_cost}</p>
-                  <p><strong>📅 Duration:</strong> ${destination.duration_label}</p>
-                  <p><strong>💡 Student Tip:</strong> ${destination.student_tip}</p>
-                </div>
-                <a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="popup-btn">Read Student Guide →</a>
+                <p><strong>💰 Cost:</strong> ${destination.estimated_cost}</p>
+                <p><strong>⏱️ Duration:</strong> ${destination.duration_label}</p>
+                <a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="popup-btn">
+                  Read Student Reviews →
+                </a>
               </div>
             `)
             .addTo(map);
@@ -338,7 +323,7 @@
         const card = document.createElement('div');
         card.className = 'destination-card';
         card.innerHTML = `
-          <div class="destination-image">${destination.image}</div>
+          <div class="destination-image" style="background-image: url('${destination.image_url}'); background-size: cover; background-position: center;"></div>
           <div class="destination-header">
             <h3>${destination.name}</h3>
             <p class="destination-country">${destination.country}</p>
@@ -391,6 +376,7 @@
     }
 
     // ============ FILTER LOGIC ============
+    // NEW: Apply filters with improved logic
     function applyTravelFilters() {
       // Get selected filter values
       const budgetChecks = Array.from(document.querySelectorAll('input[name="travel-budget"]:checked')).map(el => el.value);
@@ -402,16 +388,15 @@
       // Filter destinations based on selections
       filteredDestinations = allDestinations.filter(destination => {
         // Budget filter
-        if (budgetChecks.length > 0 && !budgetChecks.includes(destination.budget)) return false;
+        if (budgetChecks.length > 0 && !budgetChecks.includes(destination.budget)) {
+          return false;
+        }
 
-        // Duration filter
+        // Duration filter (IMPROVED: use duration_category instead of text matching)
         if (durationChecks.length > 0) {
-          const hasDuration = durationChecks.some(check => {
-            if (check === 'weekend') return destination.duration.includes('2-3');
-            if (check === 'extended') return destination.duration.includes('3-4') || destination.duration.includes('4');
+          if (!durationChecks.includes(destination.duration_category)) {
             return false;
-          });
-          if (!hasDuration) return false;
+          }
         }
 
         // Season filter
@@ -420,28 +405,86 @@
           if (!hasSeasonMatch) return false;
         }
 
-        // Interest filter
+        // Interest filter (OR logic: match ANY selected interest)
         if (interestChecks.length > 0) {
           const hasInterestMatch = interestChecks.some(interest => destination.interests.includes(interest));
           if (!hasInterestMatch) return false;
         }
 
-        // Vibe filter
-        if (vibeChecks.length > 0 && !vibeChecks.includes(destination.vibe)) return false;
+        // Vibe filter (OR logic: match ANY selected vibe)
+        if (vibeChecks.length > 0) {
+          const hasVibeMatch = vibeChecks.some(vibe => destination.vibe.includes(vibe));
+          if (!hasVibeMatch) return false;
+        }
 
         return true;
       });
 
       // Update UI
+      updateFilterResultsSummary();
       renderDestinationCards();
       createTravelMarkers();
+      zoomToFilteredDestinations();
 
       // Close filter panel on mobile
       if (window.innerWidth <= 768) {
         document.getElementById('travelFilterPanel').classList.remove('active');
+        // Smooth scroll to cards on mobile
+        setTimeout(() => {
+          document.querySelector('.travel-destinations').scrollIntoView({ behavior: 'smooth' });
+        }, 300);
       }
     }
 
+    // NEW: Zoom map to show filtered destinations
+    function zoomToFilteredDestinations() {
+      if (filteredDestinations.length === 0) {
+        // No results: don't zoom, just show message
+        return;
+      }
+
+      if (filteredDestinations.length === 1) {
+        // Single destination: fly to it with zoom
+        const destination = filteredDestinations[0];
+        map.flyTo({
+          center: destination.coordinates,
+          zoom: 12,
+          duration: 1500
+        });
+      } else {
+        // Multiple destinations: fit all on screen using bounds
+        const bounds = new mapboxgl.LngLatBounds();
+        
+        filteredDestinations.forEach(destination => {
+          bounds.extend(destination.coordinates);
+        });
+
+        map.fitBounds(bounds, {
+          padding: 60,
+          duration: 1500,
+          maxZoom: 11
+        });
+      }
+    }
+
+    // NEW: Update results summary text
+    function updateFilterResultsSummary() {
+      const summaryElement = document.getElementById('filter-results-summary');
+      const count = filteredDestinations.length;
+      
+      if (count === 0) {
+        summaryElement.innerHTML = '<p class="summary-text">❌ No destinations match your filters. Try adjusting them!</p>';
+        summaryElement.style.display = 'block';
+      } else if (count === 1) {
+        summaryElement.innerHTML = `<p class="summary-text">✅ 1 destination matches your filters</p>`;
+        summaryElement.style.display = 'block';
+      } else {
+        summaryElement.innerHTML = `<p class="summary-text">✅ ${count} destinations match your filters</p>`;
+        summaryElement.style.display = 'block';
+      }
+    }
+
+    // IMPROVED: Reset to sensible defaults
     function resetTravelFilters() {
       const defaults = {
         "travel-budget": ["budget", "moderate", "expensive"],
@@ -453,14 +496,25 @@
         "travel-priority": []
       };
 
+      // Uncheck all inputs first
       document.querySelectorAll('#travelFilterPanel input[type="checkbox"]').forEach(input => {
-        const group = input.name;
-        input.checked = defaults[group]?.includes(input.value) || false;
+        input.checked = false;
       });
 
+      // Then check only the defaults
+      document.querySelectorAll('#travelFilterPanel input[type="checkbox"]').forEach(input => {
+        const group = input.name;
+        if (defaults[group]?.includes(input.value)) {
+          input.checked = true;
+        }
+      });
+
+      // Reset filters
       filteredDestinations = [...allDestinations];
+      updateFilterResultsSummary();
       renderDestinationCards();
       createTravelMarkers();
+      zoomToFilteredDestinations();
     }
 
     // ============ FILTER PANEL TOGGLE ============
@@ -472,12 +526,21 @@
       document.getElementById('travelFilterPanel').classList.remove('active');
     });
 
+    // OLD: Apply button still works (but filters now update live)
     document.getElementById('applyTravelFilters').addEventListener('click', applyTravelFilters);
     document.getElementById('resetTravelFilters').addEventListener('click', resetTravelFilters);
+
+    // NEW: LIVE filtering - update immediately when any checkbox changes
+    document.querySelectorAll('#travelFilterPanel input[type="checkbox"]').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        applyTravelFilters();
+      });
+    });
 
     // ============ INITIALIZE ON PAGE LOAD ============
     document.addEventListener('DOMContentLoaded', function() {
       initializeTravelMap();
+      updateFilterResultsSummary();
       renderDestinationCards();
       renderTestimonials();
     });

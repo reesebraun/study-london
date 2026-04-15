@@ -1043,6 +1043,23 @@ footer {
   padding-bottom: 0.8rem;
 }
 
+/* Results Summary (NEW) */
+.filter-results-summary {
+  display: none;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(0, 61, 130, 0.08), rgba(200, 16, 46, 0.05));
+  border-left: 4px solid #C8102E;
+  border-radius: 6px;
+}
+
+.filter-results-summary .summary-text {
+  margin: 0;
+  font-size: 1rem;
+  color: #003D82;
+  font-weight: 600;
+}
+
 .destinations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1067,6 +1084,11 @@ footer {
   text-align: center;
   padding: 1.5rem;
   background: linear-gradient(135deg, rgba(0, 61, 130, 0.05), rgba(200, 16, 46, 0.05));
+  height: 180px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .destination-header {
