@@ -1197,6 +1197,21 @@ footer {
   box-shadow: 0 4px 12px rgba(0, 61, 130, 0.3);
 }
 
+.student-guide-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(135deg, #C8102E, #ff1744);
+  color: white;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
+  letter-spacing: 0.3px;
+  z-index: 10;
+}
+
 /* Testimonials Section */
 .travel-testimonials {
   margin-bottom: 3rem;
@@ -1204,27 +1219,32 @@ footer {
 
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
 }
 
 .travel-testimonial-card {
   background: white;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.75rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-left: 4px solid #C8102E;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .travel-testimonial-card:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 .testimonial-header {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .testimonial-avatar {
@@ -1232,6 +1252,7 @@ footer {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  line-height: 1;
 }
 
 .testimonial-info {
@@ -1242,28 +1263,128 @@ footer {
 
 .testimonial-info h4 {
   color: #003D82;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.testimonial-meta {
+  font-size: 0.8rem;
+  color: #999;
   margin-bottom: 0.2rem;
 }
 
-.testimonial-info p {
-  font-size: 0.8rem;
-  color: #999;
+.testimonial-program {
+  font-size: 0.75rem;
+  color: #C8102E;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .testimonial-quote {
-  color: #555;
+  color: #333;
   font-style: italic;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 6px;
+  border-left: 3px solid #C8102E;
 }
 
-.testimonial-destination {
+.testimonial-snapshot {
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-snapshot h5,
+.testimonial-favorites h5 {
   font-size: 0.85rem;
   color: #003D82;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.snapshot-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.snapshot-item {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 0.75rem;
+}
+
+.snapshot-label {
+  color: #003D82;
   font-weight: 600;
+  flex-shrink: 0;
+}
+
+.snapshot-item span:last-child {
+  color: #555;
+}
+
+.testimonial-favorites {
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.favorites-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.favorite-item {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.favorite-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 1.5rem;
+}
+
+.favorite-item strong {
+  color: #003D82;
+  min-width: 65px;
+  font-weight: 600;
+}
+
+.favorite-item a {
+  color: #C8102E;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.favorite-item a:hover {
+  border-bottom-color: #C8102E;
+}
+
+.testimonial-takeaway {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #555;
+  font-style: italic;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+  margin-top: auto;
 }
 
 /* Student Tips Section */

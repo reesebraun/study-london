@@ -322,8 +322,15 @@
       filteredDestinations.forEach(destination => {
         const card = document.createElement('div');
         card.className = 'destination-card';
+        
+        // Show student guide badge if available
+        const guideIndicator = destination.has_guide 
+          ? '<div class="student-guide-badge">📚 Student Guide Available</div>'
+          : '';
+        
         card.innerHTML = `
           <div class="destination-image" style="background-image: url('${destination.image_url}'); background-size: cover; background-position: center;"></div>
+          ${guideIndicator}
           <div class="destination-header">
             <h3>${destination.name}</h3>
             <p class="destination-country">${destination.country}</p>
@@ -340,7 +347,7 @@
           </div>
           <p class="destination-tip"><strong>💡 Student Tip:</strong> ${destination.student_tip}</p>
           <a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="destination-link-btn">
-            View Student Guide
+            View ${destination.has_guide ? 'Student Guide' : 'Destination Details'}
           </a>
         `;
         grid.appendChild(card);
@@ -352,24 +359,75 @@
       const section = document.querySelector('.testimonials-grid');
       section.innerHTML = '';
 
-      studentTestimonials.slice(0, 6).forEach(testimonial => {
-        const destinations = testimonial.destination_id
-          .map(id => allDestinations.find(d => d.id === id)?.name)
-          .filter(Boolean)
-          .join(', ');
-
+      studentTestimonials.forEach(testimonial => {
         const card = document.createElement('div');
         card.className = 'travel-testimonial-card';
+        
+        // Create destination link if available
+        const favoriteDestination = allDestinations.find(d => d.id === testimonial.favorite_trip_link);
+        const favoriteDestinationLink = favoriteDestination 
+          ? `<a href="destination-blog.html?city=${encodeURIComponent(favoriteDestination.name)}" class="destination-link">${testimonial.favorite_trip}</a>`
+          : testimonial.favorite_trip;
+
+        // Format ease of travel rating or skip if null
+        const easeOfTravelHTML = testimonial.ease_of_travel 
+          ? `<div class="snapshot-item">
+              <span class="snapshot-label">✈️ Ease of Travel:</span>
+              <span>${'⭐'.repeat(testimonial.ease_of_travel)}</span>
+            </div>`
+          : '';
+
+        // Include favorite food only if it exists
+        const favoritefoodHTML = testimonial.favorite_food
+          ? `<div class="favorite-item">
+              <span class="favorite-icon">🍽️</span>
+              <strong>Food:</strong> ${testimonial.favorite_food}
+            </div>`
+          : '';
+
         card.innerHTML = `
           <div class="testimonial-header">
-            <div class="testimonial-avatar">${testimonial.image}</div>
+            <div class="testimonial-avatar">${testimonial.avatar}</div>
             <div class="testimonial-info">
               <h4>${testimonial.name}</h4>
-              <p>${testimonial.year}</p>
+              <p class="testimonial-meta">${testimonial.home_base_city}, ${testimonial.country} • ${testimonial.term}</p>
+              <p class="testimonial-program">${testimonial.program}</p>
             </div>
           </div>
-          <p class="testimonial-quote">"${testimonial.text}"</p>
-          <p class="testimonial-destination"><strong>Visited:</strong> ${destinations}</p>
+          
+          <p class="testimonial-quote">"${testimonial.short_quote}"</p>
+          
+          <div class="testimonial-snapshot">
+            <h5>💡 Student Snapshot</h5>
+            <div class="snapshot-items">
+              <div class="snapshot-item">
+                <span class="snapshot-label">💰 Cost Reality:</span>
+                <span>${testimonial.cost_reality}</span>
+              </div>
+              ${easeOfTravelHTML}
+              <div class="snapshot-item">
+                <span class="snapshot-label">💡 Budget Tip:</span>
+                <span>${testimonial.budget_tip}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-favorites">
+            <h5>⭐ Favorites</h5>
+            <div class="favorites-items">
+              ${favoritefoodHTML}
+              <div class="favorite-item">
+                <span class="favorite-icon">🎯</span>
+                <strong>Activity:</strong> ${testimonial.favorite_activity}
+              </div>
+              <div class="favorite-item">
+                <span class="favorite-icon">📍</span>
+                <strong>Trip:</strong> ${favoriteDestinationLink}
+              </div>
+            </div>
+          </div>
+          
+          <p class="testimonial-takeaway"><em>"${testimonial.testimonial_takeaway}"</em></p>
         `;
         section.appendChild(card);
       });
