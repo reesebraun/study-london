@@ -1027,6 +1027,14 @@ footer {
   transform: translateY(-2px);
 }
 
+.popup-btn.guide-btn {
+  background: linear-gradient(135deg, #C8102E, #ff1744);
+}
+
+.popup-btn.guide-btn:hover {
+  background: linear-gradient(135deg, #a50820, #d21234);
+}
+
 /* Destinations Grid */
 .travel-destinations {
   margin-bottom: 3rem;
@@ -1177,6 +1185,10 @@ footer {
   margin-bottom: 0;
 }
 
+.destination-buttons {
+  padding: 1rem 1.5rem 1.5rem;
+}
+
 .destination-link-btn {
   display: block;
   background-color: #003D82;
@@ -1186,15 +1198,26 @@ footer {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
-  margin: 1rem 1.5rem 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid transparent;
 }
 
 .destination-link-btn:hover {
   background-color: #1e1e3f;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 61, 130, 0.3);
+}
+
+.destination-link-btn.guide-btn {
+  background: linear-gradient(135deg, #C8102E, #ff1744);
+}
+
+.destination-link-btn.guide-btn:hover {
+  background: linear-gradient(135deg, #a50820, #d21234);
+  box-shadow: 0 4px 12px rgba(200, 16, 46, 0.3);
 }
 
 .student-guide-badge {
@@ -1848,5 +1871,192 @@ footer {
 
   .citation p {
     font-size: 0.9rem;
+  }
+}
+
+/* GUIDE PAGE STYLES */
+.guide-wrapper {
+  background-color: #fafbfc;
+}
+
+.guide-hero,
+.guide-city,
+.guide-final {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.guide-nav {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.guide-nav a {
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: #f3f3f3;
+  color: #222;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.guide-nav a:hover {
+  background: var(--uk-blue);
+  color: white;
+}
+
+.guide-hero h1 {
+  font-size: 2.8rem;
+  color: var(--uk-navy);
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.guide-hero p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.guide-city {
+  border-top: 1px solid #e5e5e5;
+}
+
+.guide-city h2,
+.guide-final h2 {
+  font-size: 2rem;
+  color: var(--uk-navy);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.guide-city h3 {
+  font-size: 1.1rem;
+  color: var(--uk-blue);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.guide-city p,
+.guide-final p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.guide-city ul {
+  padding-left: 1.25rem;
+  line-height: 1.8;
+  list-style: disc;
+}
+
+.guide-city li {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.guide-final {
+  background: linear-gradient(135deg, rgba(200, 16, 46, 0.08), rgba(0, 61, 130, 0.08));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* RESPONSIVE GUIDE PAGE */
+@media (max-width: 768px) {
+  .guide-hero,
+  .guide-city,
+  .guide-final {
+    padding: 2rem 1.2rem;
+  }
+
+  .guide-nav {
+    padding: 0.8rem 1.2rem 1.5rem;
+    gap: 0.6rem;
+  }
+
+  .guide-nav a {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .guide-hero h1 {
+    font-size: 2rem;
+  }
+
+  .guide-hero p {
+    font-size: 0.95rem;
+  }
+
+  .guide-city h2,
+  .guide-final h2 {
+    font-size: 1.6rem;
+  }
+
+  .guide-city h3 {
+    font-size: 1rem;
+  }
+
+  .guide-city p,
+  .guide-final p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .guide-hero,
+  .guide-city,
+  .guide-final {
+    padding: 1.5rem 1rem;
+  }
+
+  .guide-nav {
+    padding: 0.8rem 1rem 1.2rem;
+    gap: 0.5rem;
+  }
+
+  .guide-nav a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .guide-hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .guide-hero p {
+    font-size: 0.85rem;
+  }
+
+  .guide-city h2,
+  .guide-final h2 {
+    font-size: 1.3rem;
+  }
+
+  .guide-city h3 {
+    font-size: 0.95rem;
+  }
+
+  .guide-city p,
+  .guide-final p {
+    font-size: 0.85rem;
+  }
+
+  .guide-city ul {
+    padding-left: 1rem;
+  }
+
+  .guide-city li {
+    font-size: 0.85rem;
   }
 }

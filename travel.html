@@ -289,6 +289,10 @@
         el.addEventListener('click', function(e) {
           e.stopPropagation();
 
+          const guideButton = destination.has_guide 
+            ? `<a href="guide.html#${destination.id}" class="popup-btn guide-btn">📖 Read Student Guide</a>`
+            : `<a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="popup-btn">Read Student Reviews →</a>`;
+
           new mapboxgl.Popup({ offset: 25 })
             .setLngLat(destination.coordinates)
             .setHTML(`
@@ -298,9 +302,7 @@
                 <p>${destination.description}</p>
                 <p><strong>💰 Cost:</strong> ${destination.estimated_cost}</p>
                 <p><strong>⏱️ Duration:</strong> ${destination.duration_label}</p>
-                <a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="popup-btn">
-                  Read Student Reviews →
-                </a>
+                ${guideButton}
               </div>
             `)
             .addTo(map);
@@ -347,9 +349,12 @@
             ${destination.interests.map(tag => `<span class="tag">${tag}</span>`).join('')}
           </div>
           <p class="destination-tip"><strong>💡 Student Tip:</strong> ${destination.student_tip}</p>
-          <a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="destination-link-btn">
-            View ${destination.has_guide ? 'Student Guide' : 'Destination Details'}
-          </a>
+          <div class="destination-buttons">
+            ${destination.has_guide 
+              ? `<a href="guide.html#${destination.id}" class="destination-link-btn guide-btn">📖 Read Student Guide</a>`
+              : `<a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="destination-link-btn">View Destination Details</a>`
+            }
+          </div>
         `;
         grid.appendChild(card);
       });
