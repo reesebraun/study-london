@@ -1489,3 +1489,364 @@ footer {
     width: 100%;
   }
 }
+
+/* ============================================================
+   RESEARCH & FINDINGS PAGE
+   ============================================================ */
+
+.research-hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #003D82 0%, #C8102E 100%);
+  text-align: center;
+  color: white;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.research-hero::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%);
+  background-size: 30px 30px;
+  opacity: 1;
+  top: 0;
+  left: 0;
+}
+
+.research-hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.research-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.research-hero p {
+  font-size: 1.3rem;
+  opacity: 0.95;
+  font-weight: 300;
+}
+
+.research-intro {
+  padding: 4rem 2rem;
+  background: white;
+  text-align: center;
+  border-bottom: 2px solid var(--uk-red);
+}
+
+.research-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  letter-spacing: 0.3px;
+}
+
+/* JUMP LINKS */
+.jump-links-section {
+  padding: 3rem 2rem;
+  background: linear-gradient(to right, rgba(200, 16, 46, 0.05), rgba(0, 61, 130, 0.05));
+  border-bottom: 2px solid var(--uk-blue);
+}
+
+.jump-title {
+  font-size: 1.2rem;
+  color: var(--uk-navy);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.jump-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.jump-link {
+  padding: 1rem 1.5rem;
+  background: white;
+  border: 2px solid var(--uk-blue);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--uk-navy);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.jump-link:hover {
+  background: var(--uk-red);
+  color: white;
+  border-color: var(--uk-red);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(200, 16, 46, 0.2);
+}
+
+/* RESEARCH CONTENT */
+.research-content {
+  padding: 4rem 2rem;
+  background: white;
+}
+
+.research-section {
+  margin-bottom: 5rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid var(--uk-red);
+}
+
+.section-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--uk-red);
+  opacity: 0.3;
+  min-width: 60px;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  color: var(--uk-navy);
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+}
+
+.section-content {
+  color: #555;
+  line-height: 1.9;
+}
+
+.section-content p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.section-content p:first-child {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.subsection-title {
+  font-size: 1.3rem;
+  color: var(--uk-navy);
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--uk-blue);
+  padding-left: 1rem;
+}
+
+.research-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+
+.research-list li {
+  padding-left: 1.8rem;
+  margin-bottom: 0.8rem;
+  position: relative;
+  color: #555;
+  line-height: 1.7;
+}
+
+.research-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--uk-red);
+  font-weight: 700;
+}
+
+.research-subsection {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-left: 4px solid var(--uk-blue);
+  border-radius: 4px;
+}
+
+.research-subsection h4 {
+  font-size: 1.1rem;
+  color: var(--uk-navy);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  margin-top: 0;
+}
+
+.research-subsection p {
+  margin-bottom: 1rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.research-subsection p:last-child {
+  margin-bottom: 0;
+}
+
+.citations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.citation {
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-left: 4px solid var(--uk-red);
+  border-radius: 4px;
+  line-height: 1.8;
+}
+
+.citation p {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.citation em {
+  color: var(--uk-navy);
+  font-weight: 500;
+}
+
+/* RESEARCH PAGE RESPONSIVE */
+@media (max-width: 1024px) {
+  .research-hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .research-hero p {
+    font-size: 1.15rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .section-number {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .research-hero {
+    min-height: 45vh;
+    padding: 2rem 1.5rem;
+  }
+
+  .research-hero h1 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .research-hero p {
+    font-size: 1rem;
+  }
+
+  .research-intro {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+  }
+
+  .jump-links-section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .jump-title {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .jump-links {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .jump-link {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .research-content {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .research-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .section-number {
+    font-size: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .subsection-title {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .research-subsection {
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+  }
+
+  .section-content p {
+    font-size: 0.95rem;
+  }
+
+  .citation {
+    padding: 1.2rem;
+  }
+
+  .citation p {
+    font-size: 0.9rem;
+  }
+}
