@@ -1020,6 +1020,8 @@ footer {
   font-size: 0.85rem;
   margin-top: 0.8rem;
   transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
 }
 
 .popup-btn:hover {

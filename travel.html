@@ -293,8 +293,8 @@
           e.stopPropagation();
 
           const guideButton = destination.has_guide 
-            ? `<a href="guide.html#${destination.id}" class="popup-btn guide-btn">📖 Read Student Guide</a>`
-            : `<a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="popup-btn">Read Student Reviews →</a>`;
+            ? `<a href="guide-${destination.id}.html" class="popup-btn guide-btn">📖 Read Student Guide</a>`
+            : `<a href="${destination.guide_url}" target="_blank" class="popup-btn">🌍 Explore Destination</a>`;
 
           new mapboxgl.Popup({ offset: 25 })
             .setLngLat(destination.coordinates)
@@ -305,7 +305,10 @@
                 <p>${destination.description}</p>
                 <p><strong>💰 Cost:</strong> ${destination.estimated_cost}</p>
                 <p><strong>⏱️ Duration:</strong> ${destination.duration_label}</p>
-                ${guideButton}
+                <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+                  ${guideButton}
+                  <a href="#" class="popup-btn" onclick="scrollToDestination('${destination.id}'); return false;">View Card →</a>
+                </div>
               </div>
             `)
             .addTo(map);
@@ -328,6 +331,7 @@
       filteredDestinations.forEach(destination => {
         const card = document.createElement('div');
         card.className = 'destination-card';
+        card.setAttribute('data-destination-id', destination.id);
         
         // Show student guide badge if available
         const guideIndicator = destination.has_guide 
@@ -354,7 +358,7 @@
           <p class="destination-tip"><strong>💡 Student Tip:</strong> ${destination.student_tip}</p>
           <div class="destination-buttons">
             ${destination.has_guide 
-              ? `<a href="guide.html#${destination.id}" class="destination-link-btn guide-btn">📖 Read Student Guide</a>`
+              ? `<a href="guide-${destination.id}.html" class="destination-link-btn guide-btn">📖 Read Student Guide</a>`
               : `<a href="${destination.guide_url}" target="_blank" class="destination-link-btn">🌍 Explore Destination</a>`
             }
           </div>
@@ -603,6 +607,19 @@
         applyTravelFilters();
       });
     });
+
+    // ============ SCROLL TO DESTINATION CARD ============
+    function scrollToDestination(destinationId) {
+      const card = document.querySelector(`[data-destination-id="${destinationId}"]`);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Highlight the card briefly
+        card.style.boxShadow = '0 0 20px rgba(200, 16, 46, 0.5)';
+        setTimeout(() => {
+          card.style.boxShadow = '0 2px 12px rgba(0, 0, 0, 0.08)';
+        }, 1500);
+      }
+    }
 
     // ============ INITIALIZE ON PAGE LOAD ============
     document.addEventListener('DOMContentLoaded', function() {
