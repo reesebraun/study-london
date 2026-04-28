@@ -290,7 +290,7 @@
         });
 
         // Add marker to map
-        const marker = new mapboxgl.Marker(el)
+        const marker = new mapboxgl.Marker(el, { anchor: 'center' })
           .setLngLat([location.lng, location.lat])
           .setPopup(new mapboxgl.Popup({ offset: 25 })
             .setHTML(`
