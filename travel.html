@@ -352,7 +352,7 @@
           <div class="destination-buttons">
             ${destination.has_guide 
               ? `<a href="guide.html#${destination.id}" class="destination-link-btn guide-btn">📖 Read Student Guide</a>`
-              : `<a href="destination-blog.html?city=${destination.name.toLowerCase()}" class="destination-link-btn">View Destination Details</a>`
+              : `<a href="${destination.guide_url}" target="_blank" class="destination-link-btn">🌍 Explore Destination</a>`
             }
           </div>
         `;
