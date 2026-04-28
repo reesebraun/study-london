@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Testimonials - Study Abroad</title>
     <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <h1 class="logo">Study London</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="budget.html">Budget</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="research.html">Research</a></li>
+    </ul>
+  </nav>
+
     <style>
         /* Testimonials Page Specific Styles */
         .testimonials-container {
@@ -168,19 +187,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="logo">Study Abroad Guide ✈️</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="travel.html">Travel Planner</a></li>
-                <li><a href="guide.html">Guides</a></li>
-                <li><a href="testimonials.html" class="active">Testimonials</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <!-- Testimonials Container -->
     <div class="testimonials-container">
         <div class="testimonials-header">
@@ -242,7 +248,7 @@
                 testimonial: "I love studying abroad. It has been my favorite semester so far. There is so much to do and I meet such interesting people. It's a once in a lifetime opportunity and I'm so grateful to have been able to go.",
                 easeOfTravel: 5,
                 favoriteTraveled: "Paris",
-                photo: "images/IMG_6507 - Charlotte Burke.HEIC",
+                photo: "images/IMG_5893.JPEG",
                 anonymous: false
             },
             {
@@ -286,7 +292,7 @@
                 testimonial: "Going abroad was one of my favorite college experiences. Living in Europe for 5 months forced me to go outside of my comfort zone, by trying new foods, new experiences, and meeting new people. I could not recommend it enough!",
                 easeOfTravel: 2,
                 favoriteTraveled: "Chamonix, France",
-                photo: null,
+                photo: 'images/IMG_5894.JPEG',
                 anonymous: false
             },
             {
@@ -438,5 +444,13 @@
         // Render testimonials on page load
         document.addEventListener('DOMContentLoaded', renderTestimonials);
     </script>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Group 12 | DCDA Capstone Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
