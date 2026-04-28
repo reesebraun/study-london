@@ -8,54 +8,6 @@
     <style>
         /* About Page Specific Styles */
         
-        /* Hero Section - Matching Research Style */
-        .about-hero {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1e1e3f 0%, #003D82 100%);
-            text-align: center;
-            color: white;
-            padding: 3rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-hero::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
-                linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%);
-            background-size: 30px 30px;
-            opacity: 1;
-            top: 0;
-            left: 0;
-        }
-
-        .about-hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .about-hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-            line-height: 1.2;
-        }
-
-        .about-hero p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-
         /* Container */
         .about-container {
             max-width: 1100px;
@@ -73,8 +25,6 @@
         .story-intro {
             font-size: 1.1rem;
             color: #999999;
-            margin-bottom: 2rem;
-            font-style: italic;
         }
 
         .story-section h2 {
@@ -86,12 +36,12 @@
         }
 
         .story-content {
-            max-width: 900px;
-            margin: 0 auto;
-            color: #555;
-            line-height: 1.9;
-            font-size: 1.05em;
             text-align: left;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .story-content p {
@@ -101,67 +51,43 @@
         /* Photo Gallery Section */
         .photo-section {
             padding: 4rem 2rem;
-            background: #f8f9fa;
+            background: #f9f9f9;
         }
 
         .photo-intro {
             text-align: center;
             margin-bottom: 3rem;
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .photo-intro h3 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: #1e1e3f;
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
         }
 
         .photo-intro p {
-            font-size: 1.1em;
+            font-size: 1.1rem;
             color: #999999;
         }
 
-        /* Horizontal Scroll Gallery */
+        /* Scroll Gallery */
         .scroll-gallery {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             overflow-x: auto;
-            padding: 20px 0;
+            padding: 20px;
             scroll-behavior: smooth;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .scroll-gallery::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .scroll-gallery::-webkit-scrollbar-track {
-            background: #e0e0e0;
-            border-radius: 10px;
-        }
-
-        .scroll-gallery::-webkit-scrollbar-thumb {
-            background: #1e1e3f;
-            border-radius: 10px;
+            -webkit-overflow-scrolling: touch;
         }
 
         .gallery-item {
-            flex: 0 0 320px;
-            height: 320px;
+            flex-shrink: 0;
+            width: 300px;
+            height: 300px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
         .gallery-item img {
@@ -173,7 +99,7 @@
         .gallery-placeholder {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #003D82 0%, #1e1e3f 100%);
+            background: linear-gradient(135deg, #1e1e3f 0%, #003D82 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -225,15 +151,15 @@
         }
 
         .creator-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
         .creator-photo {
             width: 100%;
-            height: 380px;
-            background: linear-gradient(135deg, #1e1e3f 0%, #003D82 100%);
+            height: 400px;
             overflow: hidden;
+            background: linear-gradient(135deg, #1e1e3f 0%, #003D82 100%);
         }
 
         .creator-photo img {
@@ -243,90 +169,83 @@
         }
 
         .creator-content {
-            padding: 30px 25px;
+            padding: 2rem;
         }
 
         .creator-name {
-            font-size: 1.5em;
+            font-size: 1.5rem;
             font-weight: 800;
             color: #1e1e3f;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
             letter-spacing: -0.5px;
         }
 
         .creator-bio {
+            font-size: 0.95rem;
+            line-height: 1.7;
             color: #666;
-            line-height: 1.75;
-            font-size: 0.95em;
         }
 
         /* Closing Section */
         .closing-section {
-            background: linear-gradient(135deg, #003D82 0%, #C8102E 100%);
-            color: white;
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
+            background: white;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .closing-section::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
-                linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%);
-            background-size: 30px 30px;
-            opacity: 1;
-            top: 0;
-            left: 0;
         }
 
         .closing-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .closing-section h2 {
             font-size: 2.5rem;
-            margin-bottom: 2rem;
+            color: #1e1e3f;
             font-weight: 800;
+            margin-bottom: 1.5rem;
             letter-spacing: -0.5px;
         }
 
         .closing-section p {
-            font-size: 1.05em;
+            font-size: 1.05rem;
             line-height: 1.8;
+            color: #555;
             margin-bottom: 1.5rem;
-            opacity: 0.95;
+            font-weight: 300;
         }
 
-        .closing-section .highlight {
-            font-style: italic;
-            font-weight: 500;
+        .highlight {
             display: block;
-            margin: 2rem 0;
-            font-size: 1.1em;
-            letter-spacing: 0.5px;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            color: #1e1e3f;
+            font-weight: 600;
+            font-style: italic;
         }
 
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .about-hero h1 {
-                font-size: 2.2em;
+            .story-section {
+                padding: 2rem 1rem;
             }
 
-            .about-hero p {
-                font-size: 1.1em;
+            .story-section h2 {
+                font-size: 1.8rem;
             }
 
-            .story-section h2,
-            .creators-intro h2,
-            .closing-section h2 {
-                font-size: 1.8em;
+            .story-content {
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            .scroll-gallery {
+                gap: 12px;
+                padding: 15px;
+            }
+
+            .gallery-item {
+                width: 250px;
+                height: 250px;
             }
 
             .creators-grid {
@@ -334,9 +253,25 @@
                 gap: 30px;
             }
 
-            .gallery-item {
-                flex: 0 0 250px;
-                height: 250px;
+            .creator-photo {
+                height: 300px;
+            }
+
+            .closing-section {
+                min-height: 300px;
+                padding: 3rem 1.5rem;
+            }
+
+            .closing-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .closing-section p {
+                font-size: 1rem;
+            }
+
+            .highlight {
+                font-size: 1.1rem;
             }
 
             .story-content {
@@ -346,29 +281,28 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <h1 class="logo">Study London</h1>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="map.html">Map</a></li>
-            <li><a href="budget.html">Budget</a></li>
-            <li><a href="travel.html">Travel</a></li>
-            <li><a href="guide.html">Guide</a></li>
-            <li><a href="testimonials.html">Testimonials</a></li>
-            <li><a href="about.html" class="active">About Us</a></li>
-            <li><a href="research.html">Research</a></li>
-        </ul>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="about-hero">
-        <div class="about-hero-content">
-            <h1>The Creators</h1>
-            <p>Three TCU students, one city, and an experience that changed everything.</p>
-        </div>
-    </section>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <h1 class="logo">Study London</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="budget.html">Budget</a></li>
+      <li><a href="travel.html">Travel</a></li>
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="research.html">Research</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <h2>About Us</h2>
+    <p>Meet the three TCU students behind Study London.</p>
+  </header>
 
     <!-- Our Story Section -->
     <section class="story-section">
@@ -433,8 +367,8 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Study Abroad Guide. Created by Reese, [Creator 2], and [Creator 3] for TCU Students. All rights reserved.</p>
+    <footer>
+        <p>Group 12 | DCDA Capstone Project</p>
     </footer>
 
     <script>
@@ -442,7 +376,7 @@
         const galleryPhotos = [
             { src: 'images/images/about/IMG_0493.JPG', alt: 'About Moment 1' },
             { src: 'images/images/about/IMG_0791.JPG', alt: 'About Moment 3' },
-            { src: 'images/images/about/IMG_0794.JPG', alt: 'About Moment 4' },,
+            { src: 'images/images/about/IMG_0794.JPG', alt: 'About Moment 4' },
             { src: 'images/images/about/IMG_1124.JPG', alt: 'About Moment 6' },
             { src: 'images/images/about/IMG_1255.JPG', alt: 'About Moment 7' },
             { src: 'images/images/about/IMG_4841.JPG', alt: 'About Moment 16' },
@@ -467,10 +401,10 @@
             { src: 'images/images/about/Tezza-7748.JPG', alt: 'About Moment 40' },
             { src: 'images/images/about/Tezza-7892.JPG', alt: 'About Moment 41' },
             { src: 'images/images/about/Tezza-9857.JPG', alt: 'About Moment 42' },
-            { src: 'images/images/about/Tezza-9900.JPG', alt: 'About Moment 43' },
+            { src: 'images/images/about/Tezza-9900.JPG', alt: 'About Moment 43' }
         ];
 
-        // Creator data - customize with your own information
+        // Creator data
         const creators = [
             {
                 name: 'Reese Braun',
@@ -480,12 +414,13 @@
             {
                 name: 'Mary Kate Cahill',
                 photo: 'images/IMG_1573 4.jpg',
-                bio: 'I am currently a student at Texas Christian University studying [Major]. Studying abroad in London through the ACCENT Global Learning program completely shifted how I view independence, travel, and stepping outside my comfort zone. Living in a new city pushed me to become more adaptable and open to new experiences. Through Study London, I wanted to help create something that gives other students that same sense of confidence and excitement going into their own experience abroad.'
+                bio: 'I am a senior at Texas Christian University studying Strategic Communication with a minor in Digital Culture and Data Analytics, originally from Summit, New Jersey. One of the most impactful parts of my college experience was studying abroad in London. Living in a new city pushed me to become more independent, adaptable, and confident in unfamiliar situations, while also giving me a broader perspective on different cultures and ways of life. At TCU, I’ve developed skills that combine communication, data, and technology through both coursework and hands-on projects. I also interned with Merrill Lynch Wealth Management, where I gained real experience working with clients and understanding the importance of strong communication and attention to detail. After graduation, I’ll be joining Merrill Lynch full-time, where I’m excited to continue growing professionally and applying the skills I’ve built throughout college in a real-world setting.'
             },
             {
                 name: 'Katie Cavanagh',
                 photo: 'images/IMG_1858.JPEG',
                 bio: 'I am currently a senior at Texas Christian University studying Strategic Communication and Digital Culture & Data Analytics. Studying abroad in London through the ACCENT Global Learning program completely transformed my independence and confidence. Living across the world exposed me to new cultures and experiences that I will never forget. I met my best friends, stepped out of my comfort zone, and grew in ways I never imagined. I feel incredibly fortunate to have had the opportunity to study abroad, and if you are reading this and have the chance to go, do it! It will be one of the most impactful experiences of your life.'    
+            }
         ];
 
         // Render photo gallery
@@ -533,12 +468,9 @@
             renderGallery();
             renderCreators();
         });
-
-        // Mobile menu toggle
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        }
     </script>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
