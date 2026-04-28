@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Testimonials - Study Abroad</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Testimonials Page Specific Styles */
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .testimonials-header h1 {
+            font-size: 3em;
+            color: #1e1e3f;
+            margin-bottom: 15px;
+        }
+
+        .testimonials-header p {
+            font-size: 1.2em;
+            color: #999999;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial-card.no-photo {
+            max-width: 400px;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .testimonial-photo {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #1e1e3f 0%, #003D82 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+            overflow: hidden;
+        }
+
+        .testimonial-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-photo.placeholder {
+            background: linear-gradient(135deg, #003D82 0%, #0056b3 100%);
+            font-size: 4em;
+        }
+
+        .testimonial-content {
+            padding: 25px;
+        }
+
+        .testimonial-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1e1e3f;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-location {
+            color: #003D82;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+
+        .testimonial-program {
+            color: #999999;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.85em;
+        }
+
+        .detail-item {
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #003D82;
+        }
+
+        .detail-value {
+            color: #555;
+        }
+
+        .rating {
+            display: inline-block;
+            background: #C8102E;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .travel-destination {
+            display: inline-block;
+            background: #1e1e3f;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-top: 10px;
+            font-size: 0.85em;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-header h1 {
+                font-size: 2em;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-photo {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">Study Abroad Guide ✈️</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="travel.html">Travel Planner</a></li>
+                <li><a href="guide.html">Guides</a></li>
+                <li><a href="testimonials.html" class="active">Testimonials</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Testimonials Container -->
+    <div class="testimonials-container">
+        <div class="testimonials-header">
+            <h1>Student Experiences</h1>
+            <p>Read real stories from students who studied abroad and transformed their lives</p>
+        </div>
+
+        <div class="testimonials-grid" id="testimonialsGrid">
+            <!-- Testimonials will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Study Abroad Guide. Created by Reese for TCU Students. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Student testimonials data
+        const testimonials = [
+            {
+                name: "Reese",
+                location: "London-Westminster",
+                when: "Spring 2025",
+                program: "Accent Global through TCU",
+                testimonial: "Studying Abroad was the best decision ever! I made the closest friends and could not have asked for a better experience! Traveled a lot, ate the best food, and came back with the best memories!",
+                easeOfTravel: 5,
+                favoriteTraveled: "Lisbon, Portugal",
+                photo: "images/Tezza-6104 - Reese Braun.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Audrey",
+                location: "London",
+                when: "Spring 2025",
+                program: "University of Notre Dame Study Abroad",
+                testimonial: "It was an eye-opening experience to see so many new parts of the world in such a short period of time. Take advantage of exploring and really getting to know your home city. Keep track of everything you do because you will want to look back on these memories for a lifetime!",
+                easeOfTravel: 5,
+                favoriteTraveled: "Dubrovnik, Croatia",
+                photo: "images/IMG_0096 - Audrey Keeley.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Grace Allen",
+                location: "Rome, Italy",
+                when: "Summer 2025",
+                program: "Accent Global",
+                testimonial: "I loved studying abroad in Rome! Being able to travel around Italy and outside of Italy was an amazing experience to have too! I loved being able to travel with my best friends and learn throughout the entire experience.",
+                easeOfTravel: 4,
+                favoriteTraveled: "Cinque Terre, Italy",
+                photo: "images/IMG_4804 - Grace Allen.JPG",
+                anonymous: false
+            },
+            {
+                name: "Charlotte",
+                location: "London",
+                when: "January to May 2026",
+                program: "Syracuse University",
+                testimonial: "I love studying abroad. It has been my favorite semester so far. There is so much to do and I meet such interesting people. It's a once in a lifetime opportunity and I'm so grateful to have been able to go.",
+                easeOfTravel: 5,
+                favoriteTraveled: "Paris",
+                photo: "images/IMG_6507 - Charlotte Burke.HEIC",
+                anonymous: false
+            },
+            {
+                name: "Annie Raso",
+                location: "Semester at Sea",
+                when: "10 countries in Asia, Africa, and Europe",
+                program: "Semester at Sea",
+                testimonial: "Semester at Sea truly not only changed my life, but also my perspective on the world. I learned more about myself than I ever thought I could imagine and about other extremely rich and important cultures.",
+                easeOfTravel: 5,
+                favoriteTraveled: "Kenya",
+                photo: "images/IMG_6684 - Annie Raso.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Ellie",
+                location: "Barcelona",
+                when: "Spring 2025",
+                program: "IES through UW-Madison",
+                testimonial: "I LOVED studying abroad and would absolutely recommend it and Barcelona! I got to meet so many new people from other schools and locals and try so many new things. It was the best semester ever and I wish I could go back!",
+                easeOfTravel: 5,
+                favoriteTraveled: "Mallorca, Florence, Morocco",
+                photo: null,
+                anonymous: false
+            },
+            {
+                name: "Katie Cavanagh",
+                location: "London",
+                when: "Spring 2025",
+                program: "Accent Global TCU",
+                testimonial: "I had the best time studying abroad in London. I was nervous, but I ended up making the best of friends, going out of my comfort zone, and becoming a more independent person at the end of it. Even though I was broke after, I would do it again and again if I could.",
+                easeOfTravel: 4,
+                favoriteTraveled: "Lisbon, Portugal or Chamonix, France",
+                photo: "images/IMG_0560 - Katie.JPG",
+                anonymous: false
+            },
+            {
+                name: "Grace Stern",
+                location: "Rome, Italy",
+                when: "Spring 2025",
+                program: "John Cabot University through TCU Global",
+                testimonial: "Going abroad was one of my favorite college experiences. Living in Europe for 5 months forced me to go outside of my comfort zone, by trying new foods, new experiences, and meeting new people. I could not recommend it enough!",
+                easeOfTravel: 2,
+                favoriteTraveled: "Chamonix, France",
+                photo: null,
+                anonymous: false
+            },
+            {
+                name: "Mary Kate Cahill",
+                location: "London",
+                when: "Spring 2025",
+                program: "Accent",
+                testimonial: "Study abroad was the best decision I ever made. I made lifelong friends and learned so much about myself. I am forever so grateful for London!",
+                easeOfTravel: 4,
+                favoriteTraveled: "Chamonix",
+                photo: "images/IMG_9120 2 - mary kate cahill.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Keira Brown",
+                location: "Sicily",
+                when: "June 2024",
+                program: "Accent Global - TCU",
+                testimonial: "Sicily was the most magical place where I learned so much and was able to escape the dense amount of American tourists. I was surrounded by other European and African tourists and learned about Sicily's role in African to European immigration.",
+                easeOfTravel: 5,
+                favoriteTraveled: "Mount Etna, Volcano in Sicily",
+                photo: "images/IMG_3382 - Keira Brown.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Abby Lohmann",
+                location: "Florence",
+                when: "Spring 2026",
+                program: "Accent Global through TCU",
+                testimonial: "Abroad has been everything I have dreamed of and more! Living in Florence has been so much fun. I love the food, the people, and the place all so much. Getting to travel most weekends and explore new places has been so cool and it is definitely a once in a lifetime opportunity. Everyone should go abroad (especially in Florence), it is the best experience ever!",
+                easeOfTravel: 5,
+                favoriteTraveled: "Mallorca, Spain",
+                photo: "images/IMG_4460 - Abby Lohmann.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Julia Shea",
+                location: "Rome",
+                when: "Spring 2025",
+                program: "John Cabot University through TCU",
+                testimonial: "Studying abroad allowed me to meet so many people, see so many different places that I wouldn't usually go to, and broadened my perspective of the world in general. It's the best experience and definitely got me out of my comfort zone! If you have the chance, study abroad!",
+                easeOfTravel: 3,
+                favoriteTraveled: "Nice, France",
+                photo: "images/IMG_9785 - Julia Shea.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Sarah Hogan",
+                location: "Barcelona",
+                when: "Fall 2024",
+                program: "Direct exchange with UPF",
+                testimonial: "Studying abroad was the best thing I could've done. I fell in love with Barcelona and the culture and the people. I loved the city and everyone it had to offer. I was always excited to try new things and was never bored. I was surrounded by the best peers that made it so memorable. I would recommend Barcelona to anyone and always go back.",
+                easeOfTravel: 5,
+                favoriteTraveled: "Dolomites Italy",
+                photo: null,
+                anonymous: false
+            },
+            {
+                name: "Taylor Emery",
+                location: "Rome",
+                when: "Spring 2025",
+                program: "JCU",
+                testimonial: "My experience studying abroad in Rome was a period of growth, new experiences, and new friends! I learned so much about myself, the city of Rome, and Europe. This experience pushed me out of my comfort zone and opened my eyes to possibilities. I became more independent and confident as the weeks went by. I loved my experience and Rome and would recommend it to anybody!",
+                easeOfTravel: 3,
+                favoriteTraveled: "Taormina, Sicily",
+                photo: "images/IMG_1157 - Taylor Emery.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Katie Knopick",
+                location: "Florence",
+                when: "Spring 2025",
+                program: "CEA CAPA",
+                testimonial: "I loved it so much there were definitely tough times that pushed me out of my comfort zone but overall I would do anything to be able to go back!",
+                easeOfTravel: 5,
+                favoriteTraveled: "Croatia",
+                photo: "images/IMG_6079 - Katie knopick.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Emma",
+                location: "London",
+                when: "Spring 2025",
+                program: "Accent Global TCU",
+                testimonial: "It was lovely! I learned a lot about myself and how to adapt to a new city. It was such a cool experience and I tried a lot of new things!",
+                easeOfTravel: 5,
+                favoriteTraveled: "Mallorca",
+                photo: "images/IMG_2942 - Emma Brown.jpeg",
+                anonymous: false
+            },
+            {
+                name: "Shaelyn Sale",
+                location: "Florence",
+                when: "January 2025",
+                program: "CEA CAPA",
+                testimonial: "Studying abroad was nothing short of incredible. The experience stretched me in so many ways. It taught me that being uncomfortable is the best thing for you because it means you're learning to be independent, adaptable, and resilient. I had the opportunity to experience some of the most beautiful places in the world—places many people may never get to see—and it's something I'll never take for granted.",
+                easeOfTravel: 5,
+                favoriteTraveled: "Lisbon or Amalfi Coast",
+                photo: "images/IMG_4364 - Shaelyn Sale.jpeg",
+                anonymous: false
+            }
+        ];
+
+        // Function to render testimonials
+        function renderTestimonials() {
+            const grid = document.getElementById('testimonialsGrid');
+            grid.innerHTML = '';
+
+            testimonials.forEach(testimonial => {
+                const card = document.createElement('div');
+                card.className = testimonial.photo ? 'testimonial-card' : 'testimonial-card no-photo';
+
+                const photoHTML = testimonial.photo 
+                    ? `<div class="testimonial-photo"><img src="${testimonial.photo}" alt="${testimonial.name}"></div>`
+                    : '';
+
+                const displayName = testimonial.anonymous ? 'Anonymous Student' : testimonial.name;
+                const ratingStar = '⭐'.repeat(Math.min(testimonial.easeOfTravel, 5));
+
+                card.innerHTML = `
+                    ${photoHTML}
+                    <div class="testimonial-content">
+                        <div class="testimonial-name">${displayName}</div>
+                        <div class="testimonial-location">📍 ${testimonial.location}</div>
+                        <div class="testimonial-program">${testimonial.program}</div>
+                        <div class="testimonial-text">"${testimonial.testimonial}"</div>
+                        
+                        <div class="testimonial-details">
+                            <div class="detail-item">
+                                <span class="detail-label">When:</span>
+                                <span class="detail-value">${testimonial.when}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Getting Around:</span>
+                                <span class="rating">${testimonial.easeOfTravel}/5 ${ratingStar}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Favorite Trip:</span>
+                                <div>${testimonial.favoriteTraveled}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Render testimonials on page load
+        document.addEventListener('DOMContentLoaded', renderTestimonials);
+    </script>
+</body>
+</html>

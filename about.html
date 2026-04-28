@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Study Abroad</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* About Page Specific Styles */
+        
+        /* Hero Section - Matching Research Style */
+        .about-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e1e3f 0%, #003D82 100%);
+            text-align: center;
+            color: white;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%);
+            background-size: 30px 30px;
+            opacity: 1;
+            top: 0;
+            left: 0;
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .about-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Container */
+        .about-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .story-intro {
+            font-size: 1.1rem;
+            color: #999999;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .story-section h2 {
+            font-size: 2.5rem;
+            color: #1e1e3f;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+            color: #555;
+            line-height: 1.9;
+            font-size: 1.05em;
+            text-align: left;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Photo Gallery Section */
+        .photo-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .photo-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .photo-intro h3 {
+            font-size: 2.2rem;
+            color: #1e1e3f;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .photo-intro p {
+            font-size: 1.1em;
+            color: #999999;
+        }
+
+        /* Horizontal Scroll Gallery */
+        .scroll-gallery {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .scroll-gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .scroll-gallery::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+
+        .scroll-gallery::-webkit-scrollbar-thumb {
+            background: #1e1e3f;
+            border-radius: 10px;
+        }
+
+        .gallery-item {
+            flex: 0 0 320px;
+            height: 320px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #003D82 0%, #1e1e3f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+        }
+
+        /* Creators Section */
+        .creators-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .creators-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .creators-intro h2 {
+            font-size: 2.5rem;
+            color: #1e1e3f;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .creators-intro p {
+            font-size: 1.1em;
+            color: #999999;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Creator Cards */
+        .creators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .creator-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .creator-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .creator-photo {
+            width: 100%;
+            height: 380px;
+            background: linear-gradient(135deg, #1e1e3f 0%, #003D82 100%);
+            overflow: hidden;
+        }
+
+        .creator-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .creator-content {
+            padding: 30px 25px;
+        }
+
+        .creator-name {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: #1e1e3f;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .creator-bio {
+            color: #666;
+            line-height: 1.75;
+            font-size: 0.95em;
+        }
+
+        /* Closing Section */
+        .closing-section {
+            background: linear-gradient(135deg, #003D82 0%, #C8102E 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .closing-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%);
+            background-size: 30px 30px;
+            opacity: 1;
+            top: 0;
+            left: 0;
+        }
+
+        .closing-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .closing-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .closing-section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .closing-section .highlight {
+            font-style: italic;
+            font-weight: 500;
+            display: block;
+            margin: 2rem 0;
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.2em;
+            }
+
+            .about-hero p {
+                font-size: 1.1em;
+            }
+
+            .story-section h2,
+            .creators-intro h2,
+            .closing-section h2 {
+                font-size: 1.8em;
+            }
+
+            .creators-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .gallery-item {
+                flex: 0 0 250px;
+                height: 250px;
+            }
+
+            .story-content {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1 class="logo">Study London</h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="budget.html">Budget</a></li>
+            <li><a href="travel.html">Travel</a></li>
+            <li><a href="guide.html">Guide</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="research.html">Research</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>🌍 The Creators</h1>
+            <p>Three TCU students, one city, and an experience that changed everything.</p>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section">
+        <div class="about-container">
+            <p class="story-intro">Our Journey Abroad</p>
+            <h2>🫶 Our Story</h2>
+            <div class="story-content">
+                <p>We're three students from Texas Christian University who met while studying abroad in London through the ACCENT Global Learning program at the University of Westminster and quickly became inseparable.</p>
+
+                <p>What started as shared classes and navigating a new city turned into something so much bigger. From figuring out the Tube on our first day to traveling across Europe on weekends, we built a friendship and a set of experiences that completely changed how we see travel, independence, and stepping outside our comfort zones.</p>
+
+                <p>Study London started as our capstone project, but it quickly became something more meaningful. As TCU students going through the ACCENT program, we realized how overwhelming studying abroad can feel at first — new city, new systems, new everything.</p>
+
+                <p>We wanted to create something we wish we had: an interactive platform that makes studying abroad feel easier, less intimidating, and way more exciting.</p>
+
+                <p>Whether you're a TCU student heading to London through ACCENT or studying somewhere else entirely, our goal is the same — we want you to feel confident navigating your new environment and to have the kind of experience that stays with you long after you leave.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="photo-section">
+        <div class="about-container">
+            <div class="photo-intro">
+                <h3>📸 Our Favorite Moments</h3>
+                <p>Swipe through memories that shaped us ↓</p>
+            </div>
+            <div class="scroll-gallery" id="photoGallery">
+                <!-- Photos will be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Creators Section -->
+    <section class="creators-section">
+        <div class="about-container">
+            <div class="creators-intro">
+                <h2>👯‍♀️ Meet The Creators</h2>
+                <p>Each with different backgrounds, goals, and perspectives — all shaped by the same experience abroad.</p>
+            </div>
+
+            <div class="creators-grid" id="creatorsGrid">
+                <!-- Creator cards will be generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="closing-section">
+        <div class="closing-content">
+            <h2>✨ Why We Made This</h2>
+            <p>Studying abroad is more than just a semester — it's an experience that changes how you see the world and yourself.</p>
+
+            <p>As TCU students who had the opportunity to go abroad through ACCENT, we know how impactful that experience can be — and how intimidating it can feel at the beginning.</p>
+
+            <p>We created this platform to make that transition easier, but also to encourage you to fully embrace it.</p>
+
+            <span class="highlight">Say yes to the trip. Explore the city. Get lost a little.</span>
+
+            <span class="highlight">It's all part of it.</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Study Abroad Guide. Created by Reese, [Creator 2], and [Creator 3] for TCU Students. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Sample photos for the gallery - all from the about folder
+        const galleryPhotos = [
+            { src: 'images/images/about/IMG_0493.JPG', alt: 'About Moment 1' },
+            { src: 'images/images/about/IMG_0791.JPG', alt: 'About Moment 3' },
+            { src: 'images/images/about/IMG_0794.JPG', alt: 'About Moment 4' },,
+            { src: 'images/images/about/IMG_1124.JPG', alt: 'About Moment 6' },
+            { src: 'images/images/about/IMG_1255.JPG', alt: 'About Moment 7' },
+            { src: 'images/images/about/IMG_4841.JPG', alt: 'About Moment 16' },
+            { src: 'images/images/about/IMG_5588.JPG', alt: 'About Moment 17' },
+            { src: 'images/images/about/IMG_5872.JPG', alt: 'About Moment 19' },
+            { src: 'images/images/about/IMG_6305.JPG', alt: 'About Moment 20' },
+            { src: 'images/images/about/IMG_8485.JPG', alt: 'About Moment 24' },
+            { src: 'images/images/about/Tezza-1699.JPG', alt: 'About Moment 26' },
+            { src: 'images/images/about/Tezza-1817.JPG', alt: 'About Moment 27' },
+            { src: 'images/images/about/Tezza-1878.JPG', alt: 'About Moment 28' },
+            { src: 'images/images/about/Tezza-2086.JPG', alt: 'About Moment 29' },
+            { src: 'images/images/about/Tezza-2561.JPG', alt: 'About Moment 30' },
+            { src: 'images/images/about/Tezza-3053.JPG', alt: 'About Moment 31' },
+            { src: 'images/images/about/Tezza-3173.JPG', alt: 'About Moment 32' },
+            { src: 'images/images/about/Tezza-3222.JPG', alt: 'About Moment 33' },
+            { src: 'images/images/about/Tezza-3745.JPG', alt: 'About Moment 34' },
+            { src: 'images/images/about/Tezza-3810.JPG', alt: 'About Moment 35' },
+            { src: 'images/images/about/Tezza-6693.JPG', alt: 'About Moment 36' },
+            { src: 'images/images/about/Tezza-7067.JPG', alt: 'About Moment 37' },
+            { src: 'images/images/about/Tezza-7256.JPG', alt: 'About Moment 38' },
+            { src: 'images/images/about/Tezza-7614.JPG', alt: 'About Moment 39' },
+            { src: 'images/images/about/Tezza-7748.JPG', alt: 'About Moment 40' },
+            { src: 'images/images/about/Tezza-7892.JPG', alt: 'About Moment 41' },
+            { src: 'images/images/about/Tezza-9857.JPG', alt: 'About Moment 42' },
+            { src: 'images/images/about/Tezza-9900.JPG', alt: 'About Moment 43' },
+        ];
+
+        // Creator data - customize with your own information
+        const creators = [
+            {
+                name: 'Reese Braun',
+                photo: 'images/4A991686-A0ED-495B-8417-155FEB89F37D_1_105_c.jpeg',
+                bio: 'I am currently a student at Texas Christian University double majoring in Environmental Science and Data Analytics, originally from Houston, Texas. I chose to study abroad in London through the ACCENT Global Learning program because I wanted to push myself outside of my comfort zone and experience living somewhere completely new. That decision ended up being one of the most impactful parts of my college experience. Living abroad challenged me to become more independent, adaptable, and open to new experiences. Whether that meant navigating a new city, meeting people from different backgrounds, or taking advantage of opportunities to travel across Europe. It completely changed how I view both travel and personal growth. After graduation, I will be moving back to Houston to begin my career in sales, where I am excited to bring the same confidence, adaptability, and communication skills I developed abroad into a fast-paced, people-focused environment.'
+            },
+            {
+                name: 'Mary Kate Cahill',
+                photo: null,
+                bio: 'I\'m currently a student at Texas Christian University studying [Major]. Studying abroad in London through the ACCENT Global Learning program completely shifted how I view independence, travel, and stepping outside my comfort zone. Living in a new city pushed me to become more adaptable and open to new experiences. Through Study London, I wanted to help create something that gives other students that same sense of confidence and excitement going into their own experience abroad.'
+            },
+            {
+                name: 'Katie Cavanagh',
+                photo: null,
+                bio: 'I\'m currently a student at Texas Christian University studying [Major]. Studying abroad in London through the ACCENT Global Learning program completely shifted how I view independence, travel, and stepping outside my comfort zone. Living in a new city pushed me to become more adaptable and open to new experiences. Through Study London, I wanted to help create something that gives other students that same sense of confidence and excitement going into their own experience abroad.'
+            }
+        ];
+
+        // Render photo gallery
+        function renderGallery() {
+            const gallery = document.getElementById('photoGallery');
+            gallery.innerHTML = '';
+
+            galleryPhotos.forEach(photo => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.innerHTML = `<img src="${photo.src}" alt="${photo.alt}" onerror="this.parentElement.innerHTML='<div class=\\'gallery-placeholder\\'>📸</div>'">`;
+                gallery.appendChild(item);
+            });
+        }
+
+        // Render creator cards
+        function renderCreators() {
+            const creatorsSection = document.getElementById('creatorsGrid');
+            creatorsSection.innerHTML = '';
+
+            creators.forEach(creator => {
+                const card = document.createElement('div');
+                card.className = 'creator-card';
+
+                const photoHTML = creator.photo 
+                    ? `<img src="${creator.photo}" alt="${creator.name}">`
+                    : '<div style="background: linear-gradient(135deg, #1e1e3f 0%, #003D82 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 4em;">👤</div>';
+
+                card.innerHTML = `
+                    <div class="creator-photo">
+                        ${photoHTML}
+                    </div>
+                    <div class="creator-content">
+                        <div class="creator-name">${creator.name}</div>
+                        <div class="creator-bio">${creator.bio}</div>
+                    </div>
+                `;
+
+                creatorsSection.appendChild(card);
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderGallery();
+            renderCreators();
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>
