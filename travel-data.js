@@ -607,7 +607,8 @@ const travelDestinations = [
     weather: ["cool", "pleasant"],
     student_tip: "Berlin is super affordable. Visit museums on free entry evenings. Kreuzberg has the best street art.",
     highlights: ["Brandenburg Gate", "Street Art", "Nightclubs", "Museums"],
-    testimonial_source: "Sarah & Aiden"
+    testimonial_source: "Sarah & Aiden",
+    guide_url: "https://www.visitberlin.de/en/"
   },
 
   {
@@ -631,7 +632,8 @@ const travelDestinations = [
     weather: ["mild", "pleasant"],
     student_tip: "Get a Vienna City Card for free transport and museum discounts. Coffee culture is huge here.",
     highlights: ["Schönbrunn Palace", "St. Stephen's Cathedral", "Opera House", "Cafés"],
-    testimonial_source: "Austria Visit"
+    testimonial_source: "Austria Visit",
+    guide_url: "https://www.wien.info/en/"
   },
 
   {
@@ -655,7 +657,8 @@ const travelDestinations = [
     weather: ["cool", "pleasant"],
     student_tip: "Copenhagen is pricey but worth it. Bikes are the main transport. Visit Nyhavn at sunset.",
     highlights: ["Nyhavn Harbor", "Tivoli Gardens", "Street Food", "Design Scene"],
-    testimonial_source: "Nordic Trip"
+    testimonial_source: "Nordic Trip",
+    guide_url: "https://www.visitcopenhagen.com/"
   },
 
   // ============ HIDDEN GEMS & UNIQUE DESTINATIONS ============
@@ -680,7 +683,8 @@ const travelDestinations = [
     weather: ["warm", "pleasant"],
     student_tip: "Take the bus from Fez - it's an adventure in itself. Stay in a riad for authentic experiences.",
     highlights: ["Blue City Streets", "Rif Mountains", "Waterfalls", "Local Markets"],
-    testimonial_source: "North Africa Adventure"
+    testimonial_source: "North Africa Adventure",
+    guide_url: "https://www.visitmorocco.com/"
   },
 
   {
@@ -704,7 +708,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "Jemaa el-Fnaa square is chaotic but essential. Take a day trip to the Atlas Mountains or Sahara.",
     highlights: ["Medina", "Jemaa el-Fnaa", "Palaces", "Atlas Mountains"],
-    testimonial_source: "Morocco Escape"
+    testimonial_source: "Morocco Escape",
+    guide_url: "https://www.visitmorocco.com/"
   },
 
   {
@@ -728,7 +733,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "Less touristy than mainland Italy. Boat tours through sea caves are unforgettable. Try local street food.",
     highlights: ["Ortigia Island", "Mount Etna", "Sea Caves", "Local Markets", "Beaches"],
-    testimonial_source: "Sicily Adventure"
+    testimonial_source: "Sicily Adventure",
+    guide_url: "https://www.italy.it/en/travel-ideas/sicily"
   },
 
   {
@@ -777,7 +783,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "Boat tours around the volcano are incredible. Try local wine from slopes. Go early to avoid crowds.",
     highlights: ["Volcano Crater", "Local Wine", "Scenic Views", "Boat Tours"],
-    testimonial_source: "Sicily Nature"
+    testimonial_source: "Sicily Nature",
+    guide_url: "https://www.etnaguide.com/"
   }
 ];
 
