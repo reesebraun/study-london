@@ -76,7 +76,12 @@ const londonLocations = [
   { name: "Camden Market", type: "Shopping", priceLevel: "$$", price: 2, area: "Camden", tube: "Camden Town", lat: 51.5391, lng: -0.1420, studentFavorite: true, description: "Market" },
   { name: "Portobello Road Market", type: "Shopping", priceLevel: "$$", price: 2, area: "Kensington", tube: "Notting Hill Gate", lat: 51.5153, lng: -0.1988, studentFavorite: true, description: "Vintage" },
   { name: "Seven Dials", type: "Shopping", priceLevel: "$$", price: 2, area: "Westminster", tube: "Covent Garden", lat: 51.5135, lng: -0.1228, studentFavorite: true, description: "Boutiques" },
-  { name: "King's Road Chelsea", type: "Shopping", priceLevel: "$$$", price: 3, area: "Kensington", tube: "Sloane Square", lat: 51.4873, lng: -0.1612, studentFavorite: true, description: "Shops" }
+  { name: "King's Road Chelsea", type: "Shopping", priceLevel: "$$$", price: 3, area: "Kensington", tube: "Sloane Square", lat: 51.4873, lng: -0.1612, studentFavorite: true, description: "Shops" },
+  { name: "University of Westminster - Regent Street", type: "School", priceLevel: "Campus", price: 0, area: "Westminster", tube: "Oxford Circus", lat: 51.5157, lng: -0.1422, studentFavorite: true, description: "309 Regent Street, London W1B 2HW" },
+  { name: "University of Westminster - Marylebone", type: "School", priceLevel: "Campus", price: 0, area: "Westminster", tube: "Baker Street", lat: 51.5213, lng: -0.1575, studentFavorite: true, description: "35 Marylebone Road, London NW1 5LS" },
+  { name: "University of Westminster - Cavendish", type: "School", priceLevel: "Campus", price: 0, area: "Westminster", tube: "Goodge Street", lat: 51.5195, lng: -0.1365, studentFavorite: true, description: "115 New Cavendish Street, London W1W 6UW" },
+  { name: "University of Westminster - Harrow", type: "School", priceLevel: "Campus", price: 0, area: "Harrow", tube: "Northwick Park", lat: 51.5914, lng: -0.3275, studentFavorite: true, description: "Watford Road, Northwick Park, Harrow HA1 3TP" },
+  { name: "ACCENT London Study Center", type: "School", priceLevel: "Center", price: 0, area: "Bloomsbury", tube: "Tottenham Court Road", lat: 51.5206, lng: -0.1313, studentFavorite: true, description: "12 Bedford Square, London WC1B 3JA" }
 ];
 
 // Color mapping for types
@@ -87,6 +92,7 @@ const typeColors = {
   "Activity": "#4ECDC4",
   "Park": "#95E77D",
   "Shopping": "#FF1493",
+  "School": "#003D82",
   "Area": "#87CEEB",
   "Transport": "#708090"
 };
@@ -99,6 +105,7 @@ const typeIcons = {
   "Activity": "🎭",
   "Park": "🌳",
   "Shopping": "🛍️",
+  "School": "🎓",
   "Area": "🗺️",
   "Transport": "🚇"
 };
