@@ -497,7 +497,7 @@ footer {
 .page-header p {
   max-width: 700px;
   margin: 0 auto;
-  color: #4b5563;
+  color: #ffffff;
 }
 
 .map-controls {
@@ -1119,7 +1119,7 @@ footer {
 .destination-description {
   padding: 0 1.5rem;
   font-size: 0.9rem;
-  color: #555;
+  color: #999999;
   line-height: 1.5;
 }
 
@@ -1578,7 +1578,7 @@ footer {
 
 .intro-text {
   font-size: 1.1rem;
-  color: #555;
+  color: #999999;
   line-height: 1.8;
   max-width: 800px;
   margin: 0 auto;
@@ -2086,7 +2086,7 @@ html {
 .guide-intro p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #555;
+  color: #999999;
 }
 
 .guide-destinations {

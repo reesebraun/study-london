@@ -54,7 +54,8 @@ const travelDestinations = [
     weather: ["mild", "pleasant"],
     student_tip: "Bruges is touristy but worth it. Rent a bike to escape crowds. Belgian waffles and chocolate everywhere.",
     highlights: ["Medieval Center", "Canals", "Chocolate Shops", "Belgian Waffles"],
-    testimonial_source: "Fairytale Town"
+    testimonial_source: "Fairytale Town",
+    guide_url: "https://www.visitbruges.be/en"
   },
 
   {
@@ -103,7 +104,8 @@ const travelDestinations = [
     weather: ["cool", "variable"],
     student_tip: "Get a bike rental - it's the best way to explore. Free museums on certain hours.",
     highlights: ["Canal Cruises", "Anne Frank House", "Bike Culture", "Cafés"],
-    testimonial_source: "Emma & Jamal"
+    testimonial_source: "Emma & Jamal",
+    guide_url: "https://www.iamsterdam.com/"
   },
 
   {
@@ -202,7 +204,8 @@ const travelDestinations = [
     weather: ["cool", "pleasant"],
     student_tip: "Kazimierz is the heart of student nightlife. The salt mines are a unique day trip.",
     highlights: ["Main Square", "Kazimierz District", "Salt Mines", "Street Food"],
-    testimonial_source: "Polish Adventure"
+    testimonial_source: "Polish Adventure",
+    guide_url: "https://www.krakow.pl/en/"
   },
 
   {
@@ -226,7 +229,8 @@ const travelDestinations = [
     weather: ["cool", "variable"],
     student_tip: "Stay in the city center for access to everything. The walk up to Edinburgh Castle is worth the effort.",
     highlights: ["Edinburgh Castle", "Royal Mile", "Holyrood Park", "Nightlife"],
-    testimonial_source: "UK Trip Favorite"
+    testimonial_source: "UK Trip Favorite",
+    guide_url: "https://www.edinburgh.org/"
   },
 
   {
@@ -250,7 +254,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "Valletta is the historic capital. The tiny size means everything is walkable. Great diving spot.",
     highlights: ["Valletta", "Blue Lagoon", "Ancient Temples", "Diving"],
-    testimonial_source: "Mediterranean Gem"
+    testimonial_source: "Mediterranean Gem",
+    guide_url: "https://www.visitmalta.com/"
   },
 
   // ============ BEACH & WARM WEATHER TRIPS ============
@@ -275,7 +280,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "Visit Sagrada Familia early or buy skip-the-line tickets. Beachfront drinks are pricier than city center.",
     highlights: ["Sagrada Familia", "Park Güell", "Beach", "Tapas"],
-    testimonial_source: "Zara & Marcus"
+    testimonial_source: "Zara & Marcus",
+    guide_url: "https://www.barcelona-tourism.com/"
   },
 
   {
@@ -299,7 +305,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "Dinner starts late (9pm+). Free museum hours are 6–8pm weekdays. Tapas crawl in La Latina.",
     highlights: ["Prado Museum", "La Latina", "Retiro Park", "Tapas Bars"],
-    testimonial_source: "Spain's Capital"
+    testimonial_source: "Spain's Capital",
+    guide_url: "https://www.esmadrid.com/"
   },
 
   {
@@ -348,7 +355,8 @@ const travelDestinations = [
     weather: ["warm", "pleasant"],
     student_tip: "Stay in Ribeira for authentic vibes. Port wine tastings are a must - find affordable tasting rooms.",
     highlights: ["Ribeira District", "Dom Luís Bridge", "Port Wine", "River Cruises"],
-    testimonial_source: "Hidden Gem"
+    testimonial_source: "Hidden Gem",
+    guide_url: "https://www.visitporto.travel/"
   },
 
   {
@@ -372,7 +380,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "City of Arts and Sciences is stunning. Paella is authentic here and way cheaper than tourist spots.",
     highlights: ["City of Arts & Sciences", "Beach", "Paella", "Las Fallas (March)"],
-    testimonial_source: "Beach Alternative"
+    testimonial_source: "Beach Alternative",
+    guide_url: "https://www.visitvalencia.com/"
   },
 
   {
@@ -396,7 +405,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "Avoid Magaluf if you want authentic vibes. Palma is way better for culture and food.",
     highlights: ["Beaches", "Nightlife", "Mountain Hikes", "Fresh Seafood"],
-    testimonial_source: "Island Paradise"
+    testimonial_source: "Island Paradise",
+    guide_url: "https://www.visitpalmademallorca.com/"
   },
 
   {
@@ -420,7 +430,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "Climb Mount Teide at sunrise. Northern beaches are less touristy and cheaper than southern ones.",
     highlights: ["Mount Teide", "Black Sand Beaches", "Hiking", "Whale Watching"],
-    testimonial_source: "Island Escape"
+    testimonial_source: "Island Escape",
+    guide_url: "https://www.webtenerife.com/"
   },
 
   {
@@ -444,7 +455,8 @@ const travelDestinations = [
     weather: ["warm", "sunny"],
     student_tip: "Promenade des Anglais is perfect for people-watching. Explore the Old Town for authentic restaurants.",
     highlights: ["Promenade des Anglais", "Old Town", "Beaches", "Art Museums"],
-    testimonial_source: "Riviera Escape"
+    testimonial_source: "Riviera Escape",
+    guide_url: "https://www.visitcotedazur.com/en"
   },
 
   // ============ MOUNTAIN & SCENIC ADVENTURES ============
@@ -469,7 +481,8 @@ const travelDestinations = [
     weather: ["cool", "pleasant"],
     student_tip: "Book the Jungfrau train in advance for discounts. Budget hostels here are still pricey but worth it.",
     highlights: ["Jungfrau", "Mountain Hikes", "Adventure Sports", "Swiss Lakes"],
-    testimonial_source: "Mountain Adventure"
+    testimonial_source: "Mountain Adventure",
+    guide_url: "https://www.interlaken.com/"
   },
 
   {
@@ -493,7 +506,8 @@ const travelDestinations = [
     weather: ["warm", "pleasant"],
     student_tip: "Row out to Bled Island in a traditional boat. The viewpoint hike is free and stunning.",
     highlights: ["Bled Island", "Castle Viewpoint", "Lake Hikes", "Cream Cake"],
-    testimonial_source: "Hidden Gem"
+    testimonial_source: "Hidden Gem",
+    guide_url: "https://www.bled.si/en/"
   },
 
   {
@@ -517,7 +531,8 @@ const travelDestinations = [
     weather: ["cool", "pleasant"],
     student_tip: "Book accommodation in villages like Cortina. Hiking the Tre Cime is iconic and worth it.",
     highlights: ["Tre Cime", "Mountain Hikes", "Alpine Villages", "Alpine Lakes"],
-    testimonial_source: "Mountain Paradise"
+    testimonial_source: "Mountain Paradise",
+    guide_url: "https://www.dolomitisuperski.com/"
   },
 
   {
@@ -541,7 +556,8 @@ const travelDestinations = [
     weather: ["warm", "pleasant"],
     student_tip: "Buy a 5-day Cinque Terre card for trains and trails. Stay in one village and day-hop by train.",
     highlights: ["Coastal Hikes", "Colorful Villages", "Fresh Seafood", "Swimming"],
-    testimonial_source: "Italian Gem"
+    testimonial_source: "Italian Gem",
+    guide_url: "https://www.cinqueterre.eu.com/"
   },
 
   // ============ HISTORIC & CULTURE DESTINATIONS ============
@@ -566,7 +582,8 @@ const travelDestinations = [
     weather: ["warm", "pleasant"],
     student_tip: "Get the Roma Pass for museum entry. Street food (panini, pizza al taglio) is affordable.",
     highlights: ["Colosseum", "Vatican", "Roman Forum", "Gelato"],
-    testimonial_source: "Marcus & Diego"
+    testimonial_source: "Marcus & Diego",
+    guide_url: "https://www.rome-tourism.it/"
   },
 
   {
